@@ -106,3 +106,12 @@ assets/
 3. After the first paint, `features/lazy-3d.js` loads three.js and the portrait
    data, and the particle field takes over the hero. Until then the name shows
    as plain text, so the page is usable immediately.
+
+## License
+
+- **Code** (HTML, CSS, JavaScript): MIT, see [`LICENSE`](LICENSE).
+- **Personal content** (the text in `content.json`, the portrait, images and
+  resume): © Md Kamruzzaman, all rights reserved. It is not covered by the MIT license.
+- **Third-party files** (three.js, GSAP, ScrollTrigger, the two fonts): their own
+  licenses, listed in [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md). The license
+  texts sit next to the files in `assets/vendor` and `assets/fonts`.
