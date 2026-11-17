@@ -1,0 +1,3453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Md Kamruzzaman Portfolio</title>
+  <meta name="description"
+    content="Md Kamruzzaman is a front-end and MERN stack developer in Jashore, Bangladesh. School platforms, HR systems, courier dashboards and the websites around them.">
+  <meta property="og:title" content="Md Kamruzzaman Portfolio">
+  <meta property="og:description" content="Front-end and MERN stack developer in Jashore, Bangladesh.">
+  <meta property="og:type" content="website">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1612'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='900' font-size='27' text-anchor='middle' fill='%23F0B437'%3Emk.%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Newsreader:ital,opsz,wght@1,6..72,300..600&display=swap">
+
+  <script>
+    /* Runs before first paint: marks JS as available, restores a saved theme, and hides the hero until the intro is ready. */
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js', 'is-loading');
+      try {
+        var t = localStorage.getItem('mk-theme');
+        if (t === 'dark' || t === 'light') d.setAttribute('data-theme', t);
+      } catch (e) { }
+      setTimeout(function () { d.classList.remove('is-loading'); }, 3500);
+    })();
+  </script>
+
+  <style>
+    /* ==========================================================================
+   Tokens
+   Layout idea: a survey sheet. One live terrain behind the first and last
+   screens, solid paper sheets in between, everything left-aligned to a neatline.
+   ========================================================================== */
+    :root {
+      --bg: #EDEFE6;
+      /* sage paper */
+      --surface: #F6F7F1;
+      /* raised paper */
+      --ink: #0F1F1A;
+      /* green-black ink */
+      --muted: #55645C;
+      --line: #CBD2C5;
+      /* hairlines */
+      --accent: #E9A520;
+      /* marigold, used as a fill */
+      --accent-ink: #0F1F1A;
+      /* text on marigold */
+      --accent-text: #8A5200;
+      /* marigold as text on paper */
+      --water: #1D6A5C;
+      /* low ground */
+
+      --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+      --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --font-note: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+
+      --fs-xs: .8125rem;
+      --fs-sm: .9375rem;
+      --fs-base: 1.0625rem;
+      --fs-md: clamp(1.125rem, 1rem + .5vw, 1.3125rem);
+
+      --gut: clamp(1rem, 4vw, 3.5rem);
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      --i-ext: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 10 10 2M4 2h6v6' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E");
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0A1612;
+        --surface: #101F1A;
+        --ink: #E8EFE7;
+        --muted: #8FA399;
+        --line: #21342D;
+        --accent: #F0B437;
+        --accent-ink: #0A1612;
+        --accent-text: #F0B437;
+        --water: #7FD2C2;
+        color-scheme: dark;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0A1612;
+      --surface: #101F1A;
+      --ink: #E8EFE7;
+      --muted: #8FA399;
+      --line: #21342D;
+      --accent: #F0B437;
+      --accent-ink: #0A1612;
+      --accent-text: #F0B437;
+      --water: #7FD2C2;
+      color-scheme: dark;
+    }
+
+    /* ==========================================================================
+   Base
+   ========================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: var(--fs-base);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      overflow-x: clip;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    ol,
+    dl,
+    dd,
+    fieldset,
+    legend {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-display);
+      line-height: 1;
+      text-wrap: balance;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: .22em;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    fieldset {
+      border: 0;
+      min-width: 0;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-text);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .skip {
+      position: absolute;
+      left: var(--gut);
+      top: -5rem;
+      z-index: 100;
+      padding: .6rem 1rem;
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--bg);
+      text-decoration: none;
+    }
+
+    .skip:focus {
+      top: .75rem;
+    }
+
+    /* The Three.js canvas. Fixed behind the page; the solid sections slide over it. */
+    .terrain {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    main,
+    .foot {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Map-label halo: keeps small text readable where it sits on contour lines. */
+    .halo {
+      text-shadow: 0 0 2px var(--bg), 0 0 .4em var(--bg), 0 0 .8em var(--bg), 0 0 1.3em var(--bg);
+    }
+
+    /* External links carry a small diagonal arrow. */
+    .ext::after {
+      content: "";
+      display: inline-block;
+      width: .6em;
+      height: .6em;
+      margin-left: .35em;
+      background: currentColor;
+      -webkit-mask: var(--i-ext) center / contain no-repeat;
+      mask: var(--i-ext) center / contain no-repeat;
+      transition: transform .25s var(--ease);
+    }
+
+    .ext:hover::after {
+      transform: translate(2px, -2px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      min-height: 2.75rem;
+      padding: .7rem 1.15rem;
+      border: 1px solid var(--ink);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--ink);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      line-height: 1.1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color .25s, color .25s, border-color .25s;
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn--accent {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .btn--accent:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+
+    .iconbtn {
+      display: none;
+      place-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: transparent;
+      cursor: pointer;
+      transition: border-color .25s;
+    }
+
+    .js .iconbtn {
+      display: inline-grid;
+    }
+
+    .iconbtn:hover {
+      border-color: var(--ink);
+    }
+
+    .iconbtn svg {
+      width: 1.15rem;
+      height: 1.15rem;
+      transition: transform .6s var(--ease);
+    }
+
+    .iconbtn[data-mode="dark"] svg {
+      transform: rotate(180deg);
+    }
+
+    /* ==========================================================================
+   Top bar
+   ========================================================================== */
+    .top {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 1rem;
+      padding: .7rem var(--gut);
+      border-bottom: 1px solid transparent;
+      transition: background-color .3s, border-color .3s;
+    }
+
+    .top.is-stuck {
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      backdrop-filter: blur(14px) saturate(1.2);
+      border-bottom-color: var(--line);
+    }
+
+    .brand {
+      justify-self: start;
+      font-family: var(--font-display);
+      font-stretch: 76%;
+      font-weight: 800;
+      font-size: 1.7rem;
+      line-height: 1;
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--accent-text);
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(1rem, 2.4vw, 2.2rem);
+    }
+
+    .nav a {
+      position: relative;
+      padding: .35rem 0;
+      font-size: var(--fs-sm);
+      text-decoration: none;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s var(--ease);
+    }
+
+    .nav a:hover::after,
+    .nav a[aria-current="true"]::after {
+      transform: scaleX(1);
+    }
+
+    .top__tools {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* Field-log chip (the game). Only shown when scripts run. */
+    .logchip {
+      display: none;
+      align-items: center;
+      gap: .45rem;
+      height: 2.5rem;
+      padding: 0 .7rem 0 .6rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: transparent;
+      font-size: var(--fs-xs);
+      line-height: 1;
+      cursor: pointer;
+      transition: border-color .25s;
+    }
+
+    .js .logchip {
+      display: inline-flex;
+    }
+
+    .logchip:hover {
+      border-color: var(--ink);
+    }
+
+    .logchip svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      transform: rotate(-90deg);
+    }
+
+    .logchip circle {
+      fill: none;
+      stroke-width: 2.6;
+    }
+
+    .logchip__track {
+      stroke: var(--line);
+    }
+
+    .logchip__ring {
+      stroke: var(--accent-text);
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      transition: stroke-dashoffset .7s var(--ease);
+    }
+
+    .logchip b {
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 900px) {
+      .top {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav,
+      .top__hire {
+        display: none;
+      }
+
+      .js .menu-btn {
+        display: inline-flex;
+        min-height: 2.5rem;
+        padding: .5rem .8rem;
+        border-color: var(--line);
+      }
+
+      .logchip__label {
+        display: none;
+      }
+    }
+
+    /* Full-screen menu for small screens */
+    .menu {
+      position: fixed;
+      inset: 0;
+      z-index: 45;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      padding: 5.5rem var(--gut) 1.75rem;
+      background: var(--bg);
+    }
+
+    .menu[hidden] {
+      display: none;
+    }
+
+    .menu nav a {
+      display: block;
+      padding: .3rem 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--font-display);
+      font-stretch: 66%;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 13vw, 5rem);
+      line-height: 1;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .menu__foot {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .menu-open {
+      overflow: hidden;
+    }
+
+    /* ==========================================================================
+   Hero
+   ========================================================================== */
+    .hero {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 100vh;
+      min-height: clamp(620px, 100svh, 1080px);
+      padding: 6rem var(--gut) clamp(1.1rem, 2.6vh, 2rem);
+    }
+
+    /* Paper rises from the bottom so the terrain dissolves behind the small text. */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 58%;
+      background: linear-gradient(to top, var(--bg) 16%, transparent);
+      pointer-events: none;
+    }
+
+    .hero>* {
+      position: relative;
+    }
+
+    .hero__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      margin-bottom: .2rem;
+    }
+
+    .hero__md {
+      font-family: var(--font-note);
+      font-style: italic;
+      font-size: clamp(1.7rem, 3.6vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .hero__survey {
+      text-align: right;
+      font-family: var(--font-note);
+      font-style: italic;
+      font-size: var(--fs-sm);
+      line-height: 1.4;
+      color: var(--muted);
+    }
+
+    .hero__survey b {
+      font-weight: 500;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* The name is fitted to the full line by script, then each letter's width follows the cursor. */
+    .name {
+      font-weight: 800;
+      font-stretch: 74%;
+      text-transform: uppercase;
+      font-size: clamp(2.6rem, 11.4vw, 15rem);
+      line-height: .8;
+      /* fallback; the script fits it exactly */
+    }
+
+    .name__row {
+      display: flex;
+      justify-content: space-between;
+      white-space: nowrap;
+      overflow: hidden;
+      overflow: visible clip;
+      padding-block: .04em;
+      margin-block: -.04em;
+    }
+
+    .name.is-in .name__row {
+      overflow: visible;
+    }
+
+    .ch {
+      display: block;
+      flex: none;
+    }
+
+    .hero__foot {
+      display: grid;
+      grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) auto;
+      gap: 1rem clamp(1.5rem, 4vw, 4rem);
+      align-items: start;
+      margin-top: clamp(.5rem, 1.1vw, 1rem);
+      padding-top: 1rem;
+      border-top: 1px solid var(--ink);
+    }
+
+    .hero__role {
+      font-family: var(--font-display);
+      font-stretch: 80%;
+      font-weight: 700;
+      font-size: 1.35rem;
+      line-height: 1.12;
+    }
+
+    .hero__lead {
+      max-width: 44ch;
+      font-size: var(--fs-md);
+      line-height: 1.45;
+    }
+
+    .hero__cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      justify-content: flex-end;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      margin-top: .7rem;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .status i {
+      width: .55rem;
+      height: .55rem;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: ping 2.6s infinite;
+    }
+
+    @keyframes ping {
+      0% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+      }
+
+      70%,
+      100% {
+        box-shadow: 0 0 0 .55rem transparent;
+      }
+    }
+
+    .is-loading .name,
+    .is-loading .hero__meta,
+    .is-loading .hero__foot {
+      visibility: hidden;
+    }
+
+    .is-loading .terrain {
+      opacity: 0;
+    }
+
+    @media (max-width: 860px) {
+      .hero__foot {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero__cta {
+        justify-content: flex-start;
+      }
+
+      .hero__hint {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+   Sections (the solid sheets)
+   ========================================================================== */
+    .sec {
+      background: var(--bg);
+      padding: clamp(3.5rem, 8vw, 7rem) var(--gut) clamp(3rem, 7vw, 6rem);
+      scroll-margin-top: 3.25rem;
+    }
+
+    .sec__head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 23rem);
+      justify-content: space-between;
+      gap: .9rem 3rem;
+      align-items: end;
+      padding-top: .9rem;
+      margin-bottom: clamp(2rem, 5vw, 4.5rem);
+      border-top: 1px solid var(--ink);
+    }
+
+    /* Titles arrive condensed and breathe out to their resting width once seen. */
+    .sec__title {
+      font-weight: 800;
+      font-stretch: 80%;
+      text-transform: uppercase;
+      font-size: clamp(3.4rem, 10.5vw, 10rem);
+      line-height: .8;
+      white-space: nowrap;
+      transition: font-stretch 1.1s var(--ease);
+    }
+
+    .js .sec__head:not(.is-seen) .sec__title {
+      font-stretch: 62%;
+    }
+
+    .sec__note {
+      font-family: var(--font-note);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1rem + .6vw, 1.4rem);
+      line-height: 1.3;
+      color: var(--muted);
+      text-wrap: balance;
+    }
+
+    @media (max-width: 760px) {
+      .sec__head {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ==========================================================================
+   Work
+   ========================================================================== */
+    .work {
+      display: grid;
+      gap: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .work__list {
+      border-top: 1px solid var(--line);
+    }
+
+    .proj {
+      border-bottom: 1px solid var(--line);
+      transition: border-color .3s;
+    }
+
+    .proj__btn {
+      display: grid;
+      grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: .75rem;
+      width: 100%;
+      padding: 1.05rem 0;
+      border: 0;
+      background: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .proj__n {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      transition: color .3s;
+    }
+
+    .proj__name {
+      font-family: var(--font-display);
+      font-stretch: 76%;
+      font-weight: 650;
+      font-size: clamp(1.4rem, 2.3vw, 2.05rem);
+      line-height: 1.05;
+      transition: font-stretch .5s var(--ease);
+    }
+
+    .proj__kind {
+      font-family: var(--font-note);
+      font-style: italic;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .js .proj.is-active {
+      border-bottom-color: var(--ink);
+    }
+
+    .js .proj.is-active .proj__name {
+      font-stretch: 100%;
+    }
+
+    .js .proj.is-active .proj__n {
+      color: var(--accent-text);
+    }
+
+    .proj__body {
+      padding: 0 0 1.3rem 3.15rem;
+    }
+
+    .proj__desc {
+      max-width: 60ch;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: 1rem;
+    }
+
+    .stack li {
+      padding: .22rem .55rem;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: var(--fs-xs);
+      line-height: 1.3;
+    }
+
+    .proj__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem 1.25rem;
+      margin-top: 1.1rem;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+    }
+
+    /* Detail pane with the generated map plate. Desktop only, needs scripts. */
+    .work__pane {
+      display: none;
+    }
+
+    .plate-wrap {
+      perspective: 1000px;
+    }
+
+    .plate {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      max-height: 42vh;
+      width: 100%;
+      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+      transform-style: preserve-3d;
+      transition: transform .6s var(--ease);
+    }
+
+    .plate__map {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+
+    .plate__map canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .plate__no {
+      position: absolute;
+      left: 1rem;
+      top: .8rem;
+      transform: translateZ(18px);
+      font-family: var(--font-note);
+      font-style: italic;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .plate__pin {
+      position: absolute;
+      left: var(--px, 50%);
+      top: var(--py, 50%);
+      transform: translate(-50%, -100%) translateZ(42px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: left .7s var(--ease), top .7s var(--ease);
+      pointer-events: none;
+    }
+
+    .plate__pin span {
+      padding: .28rem .6rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .plate__pin::after {
+      content: "";
+      width: 1px;
+      height: 1.1rem;
+      background: var(--accent-text);
+    }
+
+    .plate__pin::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -.28rem;
+      width: .56rem;
+      height: .56rem;
+      margin-left: -.28rem;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 1px solid var(--accent-ink);
+    }
+
+    .pane__body {
+      padding: 1.4rem .15rem 0;
+    }
+
+    .pane__kind {
+      font-family: var(--font-note);
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .pane__name {
+      margin: .2rem 0 .8rem;
+      font-stretch: 84%;
+      font-weight: 700;
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      line-height: 1.08;
+    }
+
+    @media (min-width: 960px) {
+      .js .work {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+        align-items: start;
+      }
+
+      .js .work__pane {
+        display: block;
+        position: sticky;
+        top: 5rem;
+      }
+
+      .js .proj__body {
+        display: none;
+      }
+    }
+
+    @media (max-width: 959.98px) {
+      .js .proj:not(.is-active) .proj__body {
+        display: none;
+      }
+
+      .proj__kind {
+        display: none;
+      }
+
+      .proj__btn {
+        grid-template-columns: 2.1rem minmax(0, 1fr);
+      }
+
+      .proj__body {
+        padding-left: 2.85rem;
+      }
+    }
+
+    /* Smaller builds */
+    .more {
+      margin-top: clamp(3rem, 6vw, 5.5rem);
+    }
+
+    .more__h {
+      margin-bottom: 1rem;
+      font-stretch: 80%;
+      font-weight: 700;
+      font-size: 1.35rem;
+    }
+
+    .more__list {
+      border-top: 1px solid var(--line);
+    }
+
+    .more__row {
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 6fr) minmax(0, 4fr) 7.5rem;
+      gap: .35rem 2rem;
+      align-items: baseline;
+      padding: .95rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .more__name {
+      font-family: var(--font-display);
+      font-stretch: 84%;
+      font-weight: 650;
+      font-size: 1.15rem;
+      line-height: 1.2;
+    }
+
+    .more__what {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .more__stack {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+    }
+
+    .more__links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .more__row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: .35rem 1rem;
+      }
+
+      .more__links {
+        grid-row: 1;
+        grid-column: 2;
+      }
+
+      .more__what,
+      .more__stack {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* ==========================================================================
+   Services
+   ========================================================================== */
+    .services {
+      border-top: 1px solid var(--line);
+    }
+
+    .svc {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) 13.5rem;
+      gap: .6rem clamp(1.5rem, 4vw, 4rem);
+      align-items: baseline;
+      padding: clamp(1.1rem, 2.4vw, 1.9rem) 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .svc__name {
+      font-weight: 750;
+      font-stretch: 68%;
+      font-size: clamp(1.9rem, 4vw, 3.3rem);
+      line-height: .98;
+      transition: font-stretch .6s var(--ease);
+    }
+
+    .svc__desc {
+      max-width: 54ch;
+      color: var(--muted);
+    }
+
+    .svc__ask {
+      justify-self: end;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    @media (hover: hover) and (min-width: 1100px) {
+
+      .svc:hover .svc__name,
+      .svc:focus-within .svc__name {
+        font-stretch: 82%;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .svc {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .svc__ask {
+        justify-self: start;
+      }
+    }
+
+    /* ==========================================================================
+   Path (experience and education)
+   ========================================================================== */
+    .path {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .path__h {
+      margin-bottom: 1.3rem;
+      font-stretch: 80%;
+      font-weight: 700;
+      font-size: 1.35rem;
+    }
+
+    .trail {
+      position: relative;
+      padding-left: 1.75rem;
+    }
+
+    .trail::before,
+    .trail::after {
+      content: "";
+      position: absolute;
+      left: .29rem;
+      top: .55rem;
+      bottom: 1.6rem;
+      width: 1px;
+      background: var(--line);
+    }
+
+    /* The inked trail is drawn by scroll (GSAP animates --draw). Fully drawn without scripts. */
+    .trail::after {
+      background: var(--ink);
+      transform: scaleY(var(--draw, 1));
+      transform-origin: top;
+    }
+
+    .trail li {
+      position: relative;
+      display: grid;
+      grid-template-columns: 6.6rem minmax(0, 1fr);
+      gap: .1rem 1rem;
+      padding: .15rem 0 1.5rem;
+    }
+
+    .trail li::before {
+      content: "";
+      position: absolute;
+      left: -1.75rem;
+      top: .42rem;
+      z-index: 1;
+      width: .62rem;
+      height: .62rem;
+      border-radius: 50%;
+      border: 1px solid var(--ink);
+      background: var(--accent);
+      transition: background-color .35s;
+    }
+
+    .trail--live li:not(.is-on)::before {
+      background: var(--bg);
+    }
+
+    .trail__when {
+      font-family: var(--font-note);
+      font-style: italic;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .trail__what {
+      font-family: var(--font-display);
+      font-stretch: 88%;
+      font-weight: 650;
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .trail__where {
+      grid-column: 2;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .path {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .trail li {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .trail__where {
+        grid-column: 1;
+      }
+    }
+
+    /* ==========================================================================
+   About
+   ========================================================================== */
+    .about {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .about__say {
+      font-family: var(--font-note);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.55rem, 1rem + 2.3vw, 2.9rem);
+      line-height: 1.16;
+      text-wrap: pretty;
+    }
+
+    .facts {
+      border-top: 1px solid var(--ink);
+    }
+
+    .facts div {
+      display: grid;
+      grid-template-columns: 7.5rem minmax(0, 1fr);
+      gap: 1rem;
+      padding: .6rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .facts dt {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .facts dd {
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+
+    .figures {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ink);
+    }
+
+    .figures b {
+      display: block;
+      font-family: var(--font-display);
+      font-stretch: 66%;
+      font-weight: 800;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: .85;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .figures span {
+      display: block;
+      margin-top: .5rem;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .kit {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 4fr 3fr 5fr;
+      gap: 1.5rem clamp(1.5rem, 4vw, 4rem);
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .kit h3 {
+      margin-bottom: .45rem;
+      font-family: var(--font-body);
+      font-size: var(--fs-sm);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--muted);
+    }
+
+    .kit p {
+      font-family: var(--font-display);
+      font-stretch: 86%;
+      font-weight: 600;
+      font-size: 1.2rem;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 860px) {
+
+      .about,
+      .kit {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .figures {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem 1rem;
+      }
+    }
+
+    /* ==========================================================================
+   Contact (the summit). Transparent, so the terrain shows through again.
+   ========================================================================== */
+    .summit {
+      position: relative;
+      padding: clamp(3.5rem, 8vw, 7rem) var(--gut) clamp(1.5rem, 4vw, 3rem);
+      scroll-margin-top: 3.25rem;
+    }
+
+    .summit::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 9rem;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+      pointer-events: none;
+    }
+
+    .summit>* {
+      position: relative;
+    }
+
+    .summit .sec__head {
+      margin-bottom: 0;
+    }
+
+    .summit .sec__title {
+      font-stretch: 70%;
+      line-height: .86;
+      white-space: normal;
+      transition: none;
+    }
+
+    .js .summit .sec__head:not(.is-seen) .sec__title {
+      font-stretch: 70%;
+    }
+
+    .summit__view {
+      height: clamp(200px, 46svh, 520px);
+    }
+
+    .sheet {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(1.75rem, 4vw, 4rem);
+      padding: clamp(1.25rem, 3vw, 2.5rem);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .sheet__h {
+      margin-bottom: 1rem;
+      font-family: var(--font-body);
+      font-size: var(--fs-sm);
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .reach__mail {
+      display: block;
+      margin-bottom: .9rem;
+      font-family: var(--font-display);
+      font-stretch: 78%;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 2.1vw, 1.85rem);
+      line-height: 1.15;
+      overflow-wrap: anywhere;
+      text-decoration: none;
+    }
+
+    .reach__mail:hover {
+      text-decoration: underline;
+    }
+
+    .reach .facts {
+      margin-top: 1.6rem;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem 1.4rem;
+      margin-top: 1.4rem;
+      font-weight: 600;
+      font-size: var(--fs-sm);
+    }
+
+    .brief {
+      display: grid;
+      gap: 1.05rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+    }
+
+    .chips legend {
+      margin-bottom: .5rem;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .chip {
+      position: relative;
+    }
+
+    .chip input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .chip span {
+      display: block;
+      padding: .5rem .8rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: var(--fs-sm);
+      line-height: 1.2;
+      transition: background-color .2s, border-color .2s, color .2s;
+    }
+
+    .chip input:hover+span {
+      border-color: var(--ink);
+    }
+
+    .chip input:checked+span {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+
+    .chip input:focus-visible+span {
+      outline: 2px solid var(--accent-text);
+      outline-offset: 3px;
+    }
+
+    .field {
+      display: grid;
+      gap: .35rem;
+    }
+
+    .field label {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: .7rem .8rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--bg);
+      line-height: 1.4;
+      transition: border-color .2s;
+    }
+
+    .field textarea {
+      min-height: 7.5rem;
+      resize: vertical;
+    }
+
+    .field input:hover,
+    .field textarea:hover,
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--ink);
+    }
+
+    .brief__go {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+
+    .brief__note {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+    }
+
+    @media (max-width: 860px) {
+      .sheet {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ==========================================================================
+   Footer
+   ========================================================================== */
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .4rem 2rem;
+      padding: 1.1rem var(--gut) 1.4rem;
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    /* ==========================================================================
+   Field log panel and toast
+   ========================================================================== */
+    .log {
+      position: fixed;
+      z-index: 55;
+      top: 4.1rem;
+      right: var(--gut);
+      width: min(22.5rem, calc(100vw - 2 * var(--gut)));
+      max-height: calc(100vh - 5.2rem);
+      overflow: auto;
+      padding: 1.1rem 1.15rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      box-shadow: 0 22px 50px -22px color-mix(in srgb, var(--ink) 45%, transparent);
+    }
+
+    .log[hidden] {
+      display: none;
+    }
+
+    .log__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .log__title {
+      font-stretch: 76%;
+      font-weight: 800;
+      font-size: 1.7rem;
+      text-transform: uppercase;
+    }
+
+    .log__rank {
+      margin-top: .2rem;
+      font-family: var(--font-note);
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .log__rank b {
+      font-weight: 500;
+      color: var(--accent-text);
+    }
+
+    .log__close {
+      padding: .3rem .1rem;
+      border: 0;
+      background: none;
+      font-size: var(--fs-sm);
+      text-decoration: underline;
+      text-underline-offset: .22em;
+      cursor: pointer;
+    }
+
+    .log__intro {
+      margin: .7rem 0 .8rem;
+      font-size: var(--fs-sm);
+      color: var(--muted);
+    }
+
+    .log__list {
+      border-top: 1px solid var(--line);
+    }
+
+    .log__list li {
+      display: grid;
+      grid-template-columns: 1.1rem minmax(0, 1fr);
+      gap: 0 .65rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .log__list li::before {
+      content: "";
+      width: .7rem;
+      height: .7rem;
+      margin-top: .38rem;
+      border-radius: 50%;
+      border: 1px solid var(--muted);
+      transition: background-color .3s, border-color .3s;
+    }
+
+    .log__list li.is-got::before {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .log__list b {
+      font-weight: 650;
+      line-height: 1.3;
+    }
+
+    .log__list span {
+      grid-column: 2;
+      font-size: var(--fs-xs);
+      color: var(--muted);
+    }
+
+    .log__list li:not(.is-got) b {
+      color: var(--muted);
+    }
+
+    .log__reward {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      margin-top: .9rem;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .log__reward[hidden] {
+      display: none;
+    }
+
+    .log__reward input {
+      width: 1rem;
+      height: 1rem;
+      accent-color: var(--accent);
+    }
+
+    .log__reset {
+      margin-top: .8rem;
+      padding: 0;
+      border: 0;
+      background: none;
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: .22em;
+      cursor: pointer;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 70;
+      left: 50%;
+      bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      width: max-content;
+      max-width: calc(100vw - 2rem);
+      padding: .65rem .95rem;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: var(--fs-sm);
+      line-height: 1.3;
+      transform: translate(-50%, calc(100% + 2rem));
+      visibility: hidden;
+      transition: transform .5s var(--ease), visibility 0s .5s;
+      pointer-events: none;
+    }
+
+    .toast::before {
+      content: "";
+      flex: none;
+      width: .5rem;
+      height: .5rem;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .toast.is-on {
+      transform: translate(-50%, 0);
+      visibility: visible;
+      transition: transform .5s var(--ease), visibility 0s;
+    }
+
+    /* ==========================================================================
+   Theme switch
+   ========================================================================== */
+    /* With View Transitions: the new theme opens as a circle from the switch. */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    .vt-theme::view-transition-new(root) {
+      animation: theme-reveal .75s var(--ease) both;
+    }
+
+    @keyframes theme-reveal {
+      from {
+        clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0%));
+      }
+
+      to {
+        clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0%));
+      }
+    }
+
+    /* Without them: a plain cross-fade. */
+    .theme-fade,
+    .theme-fade *,
+    .theme-fade *::before,
+    .theme-fade *::after {
+      transition: background-color .5s ease, color .5s ease, border-color .5s ease !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <canvas class="terrain" id="terrain" aria-hidden="true"></canvas>
+
+  <header class="top" id="top">
+    <a class="brand" id="brand" href="#home" aria-label="Md Kamruzzaman, back to the top">mk<span>.</span></a>
+
+    <nav class="nav" aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#path">Path</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="top__tools">
+      <button class="logchip" id="logBtn" type="button" aria-expanded="false" aria-controls="logPanel">
+        <svg viewBox="0 0 20 20" aria-hidden="true">
+          <circle class="logchip__track" cx="10" cy="10" r="7.5" />
+          <circle class="logchip__ring" id="logRing" cx="10" cy="10" r="7.5" pathLength="100" />
+        </svg>
+        <span class="logchip__label">Field log</span>
+        <b id="logCount">0/8</b>
+      </button>
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor" />
+        </svg>
+      </button>
+      <a class="btn btn--accent top__hire" href="#contact">Hire me</a>
+      <button class="btn menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#path">Path</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="menu__foot">info.mdkamruzzaman.dev@gmail.com<br>Jashore, Bangladesh</p>
+  </div>
+
+  <aside class="log" id="logPanel" aria-label="Field log" hidden>
+    <div class="log__head">
+      <div>
+        <h2 class="log__title">Field log</h2>
+        <p class="log__rank">Rank: <b id="logRank">Visitor</b></p>
+      </div>
+      <button class="log__close" id="logClose" type="button">Close</button>
+    </div>
+    <p class="log__intro">Eight things to find on this page. Your progress is saved in this browser.</p>
+    <ol class="log__list" id="logList"></ol>
+    <label class="log__reward" id="logReward" hidden><input type="checkbox" id="auroraToggle"> Aurora terrain</label>
+    <button class="log__reset" id="logReset" type="button">Clear the log</button>
+  </aside>
+
+  <main id="main">
+
+    <!-- ====================== Hero ====================== -->
+    <section class="hero" id="home" aria-labelledby="name">
+      <div class="hero__meta">
+        <span class="hero__md" aria-hidden="true">Md</span>
+        <p class="hero__survey halo">
+          <b id="coords">23.1667° N, 89.2089° E</b><br>
+          Jashore, Bangladesh<span id="clock"></span><br>
+          <span class="hero__hint" id="heroHint" aria-hidden="true">Move the cursor to raise the ground. Click for a
+            ripple.</span>
+        </p>
+      </div>
+
+      <h1 class="name" id="name" aria-label="Md Kamruzzaman">
+        <span class="name__row" aria-hidden="true"><span class="ch">K</span><span class="ch">a</span><span
+            class="ch">m</span><span class="ch">r</span><span class="ch">u</span><span class="ch">z</span><span
+            class="ch">z</span><span class="ch">a</span><span class="ch">m</span><span class="ch">a</span><span
+            class="ch">n</span></span>
+      </h1>
+
+      <div class="hero__foot">
+        <div>
+          <p class="hero__role">Front-end &amp; MERN stack developer</p>
+          <p class="status"><i aria-hidden="true"></i>Available for freelance</p>
+        </div>
+        <p class="hero__lead">I build responsive, user-friendly websites and the systems behind them, from school
+          platforms and HR tools to courier dashboards.</p>
+        <div class="hero__cta">
+          <a class="btn btn--accent" href="#work">See the work</a>
+          <a class="btn ext" href="https://infomdkamruzzaman.vercel.app/mdkamruzzaman.pdf" target="_blank"
+            rel="noopener">Download CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== Work ====================== -->
+    <section class="sec" id="work" aria-labelledby="work-h">
+      <div class="sec__head">
+        <h2 class="sec__title" id="work-h">Work</h2>
+        <p class="sec__note">Sixteen builds. Seven full-stack systems first, then nine sites, tools and experiments.</p>
+      </div>
+
+      <div class="work">
+        <ol class="work__list" id="projList">
+
+          <li class="proj is-active" data-host="birbd.org">
+            <h3><button class="proj__btn" type="button" aria-expanded="true" aria-controls="proj-1">
+                <span class="proj__n">01</span><span class="proj__name">School Management Web App</span><span
+                  class="proj__kind">Education platform</span>
+              </button></h3>
+            <div class="proj__body" id="proj-1">
+              <p class="proj__desc">A comprehensive full-cycle educational platform featuring virtual classrooms,
+                automated student promotion, and a built-in chatbot, while managing complex roles for students, parents,
+                and teachers with integrated payment systems.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>Socket.io</li>
+                <li>LiveKit</li>
+                <li>Prisma</li>
+                <li>PostgreSQL</li>
+                <li>TypeScript</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://birbd.org/" target="_blank" rel="noopener">Visit
+                  birbd.org</a></p>
+            </div>
+          </li>
+
+          <li class="proj" data-host="hris.museafoods.com">
+            <h3><button class="proj__btn" type="button" aria-expanded="false" aria-controls="proj-2">
+                <span class="proj__n">02</span><span class="proj__name">HR Management System</span><span
+                  class="proj__kind">Enterprise HR</span>
+              </button></h3>
+            <div class="proj__body" id="proj-2">
+              <p class="proj__desc">An enterprise-grade solution focused on employee lifecycle management, featuring
+                hardware-integrated attendance tracking, shift calculation, and automated report generation for PDF and
+                Excel formats using specialized libraries.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>Prisma ORM</li>
+                <li>MySQL</li>
+                <li>TypeScript</li>
+                <li>NextAuth</li>
+                <li>Server Actions</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://hris.museafoods.com/" target="_blank"
+                  rel="noopener">Visit hris.museafoods.com</a></p>
+            </div>
+          </li>
+
+          <li class="proj" data-host="work.obokash.com">
+            <h3><button class="proj__btn" type="button" aria-expanded="false" aria-controls="proj-3">
+                <span class="proj__n">03</span><span class="proj__name">Obokash.com Travel Agency</span><span
+                  class="proj__kind">Travel management</span>
+              </button></h3>
+            <div class="proj__body" id="proj-3">
+              <p class="proj__desc">A specialized travel management platform handling complex data for tours, visas, and
+                flights across multiple countries, featuring administrative IP blocking and section-based data feeding
+                for optimized user experiences.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>Prisma ORM</li>
+                <li>MySQL</li>
+                <li>TypeScript</li>
+                <li>NextAuth</li>
+                <li>Zod</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://work.obokash.com/" target="_blank"
+                  rel="noopener">Visit work.obokash.com</a></p>
+            </div>
+          </li>
+
+          <li class="proj" data-host="daulatpurmuhsingirls.edu.bd">
+            <h3><button class="proj__btn" type="button" aria-expanded="false" aria-controls="proj-4">
+                <span class="proj__n">04</span><span class="proj__name">Dynamic School Website</span><span
+                  class="proj__kind">Multi-tenant websites</span>
+              </button></h3>
+            <div class="proj__body" id="proj-4">
+              <p class="proj__desc">A multi-tenant architecture designed to support the creation and management of
+                multiple school websites simultaneously, utilizing domain-dependent data fetching and institute-specific
+                administrative controls from a single project.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>Prisma ORM</li>
+                <li>PostgreSQL</li>
+                <li>TypeScript</li>
+                <li>NextAuth</li>
+                <li>Zod</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://www.daulatpurmuhsingirls.edu.bd/" target="_blank"
+                  rel="noopener">Visit daulatpurmuhsingirls.edu.bd</a></p>
+            </div>
+          </li>
+
+          <li class="proj" data-host="courier-pro-self.vercel.app">
+            <h3><button class="proj__btn" type="button" aria-expanded="false" aria-controls="proj-5">
+                <span class="proj__n">05</span><span class="proj__name">Courier Management System</span><span
+                  class="proj__kind">Real-time logistics</span>
+              </button></h3>
+            <div class="proj__body" id="proj-5">
+              <p class="proj__desc">A real-time logistics dashboard providing live tracking via Google Maps, route
+                optimization, and automated invoicing with jsPDF, successfully resolving complex state conflicts and
+                notification synchronization for dispatch teams.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>TypeScript</li>
+                <li>WebSocket</li>
+                <li>Google Maps</li>
+                <li>Zod</li>
+                <li>MongoDB</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://courier-pro-self.vercel.app/" target="_blank"
+                  rel="noopener">Visit courier-pro-self.vercel.app</a></p>
+            </div>
+          </li>
+
+          <li class="proj" data-host="ighotok.com">
+            <h3><button class="proj__btn" type="button" aria-expanded="false" aria-controls="proj-6">
+                <span class="proj__n">06</span><span class="proj__name">ighotok.com Matrimonial Site</span><span
+                  class="proj__kind">Matchmaking app</span>
+              </button></h3>
+            <div class="proj__body" id="proj-6">
+              <p class="proj__desc">A full-stack matchmaking application featuring customizable search filters, a
+                proposal exchange system between users, and unique matching percentage algorithms backed by a secure
+                Supabase and PostgreSQL database architecture.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>TypeScript</li>
+                <li>shadcn/ui</li>
+                <li>Prisma</li>
+                <li>PostgreSQL</li>
+                <li>Supabase</li>
+                <li>Zustand</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://www.ighotok.com" target="_blank" rel="noopener">Visit
+                  ighotok.com</a></p>
+            </div>
+          </li>
+
+          <li class="proj" data-host="rareviewit.com">
+            <h3><button class="proj__btn" type="button" aria-expanded="false" aria-controls="proj-7">
+                <span class="proj__n">07</span><span class="proj__name">RareviewIt.com</span><span
+                  class="proj__kind">Agency platform</span>
+              </button></h3>
+            <div class="proj__body" id="proj-7">
+              <p class="proj__desc">Rareviewit.com delivers full-stack web development, strategic SEO, and UI/UX design,
+                leveraging modern tech to build scalable platforms that enhance brand visibility and drive growth.</p>
+              <ul class="stack" aria-label="Stack">
+                <li>Next.js</li>
+                <li>Prisma ORM</li>
+                <li>PostgreSQL</li>
+                <li>TypeScript</li>
+                <li>NextAuth</li>
+                <li>Server Actions</li>
+              </ul>
+              <p class="proj__links"><a class="ext" href="https://www.rareviewit.com/" target="_blank"
+                  rel="noopener">Visit rareviewit.com</a></p>
+            </div>
+          </li>
+
+        </ol>
+
+        <div class="work__pane" id="projPane" aria-live="polite">
+          <div class="plate-wrap">
+            <div class="plate" id="plate">
+              <div class="plate__map"><canvas id="plateCanvas" aria-hidden="true"></canvas></div>
+              <span class="plate__no" id="plateNo" aria-hidden="true">Sheet 01 of 07</span>
+              <span class="plate__pin" aria-hidden="true"><span id="platePin">birbd.org</span></span>
+            </div>
+          </div>
+          <div class="pane__body" id="paneBody"></div>
+        </div>
+      </div>
+
+      <div class="more">
+        <h3 class="more__h">Sites, tools and experiments</h3>
+        <ul class="more__list">
+          <li class="more__row">
+            <span class="more__name">BIRL E-commerce Platform</span>
+            <span class="more__what">A scalable store with product catalogs, cart, checkout and secure payment gateway
+              integration.</span>
+            <span class="more__stack">Next.js, Tailwind CSS, shadcn/ui, MongoDB, Zustand</span>
+            <span class="more__links"><a class="ext" href="https://birlecom.vercel.app/" target="_blank" rel="noopener"
+                aria-label="BIRL E-commerce Platform, live site">Live</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">Rich Text Editor</span>
+            <span class="more__what">A customizable editor with formatting, media embedding and live content
+              preview.</span>
+            <span class="more__stack">Next.js, Tailwind CSS, shadcn/ui, Tiptap, Zustand</span>
+            <span class="more__links"><a class="ext" href="https://editorbyxplorekamrul.vercel.app/" target="_blank"
+                rel="noopener" aria-label="Rich Text Editor, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/micro-editor" target="_blank" rel="noopener"
+                aria-label="Rich Text Editor, source code">Code</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">Web Video Player</span>
+            <span class="more__what">A web video player with custom controls, playlists and responsive streaming.</span>
+            <span class="more__stack">Next.js, Tailwind CSS, shadcn/ui, Zod, Zustand</span>
+            <span class="more__links"><a class="ext" href="https://video-player-gold.vercel.app/" target="_blank"
+                rel="noopener" aria-label="Web Video Player, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/video-player" target="_blank" rel="noopener"
+                aria-label="Web Video Player, source code">Code</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">BAY Institute</span>
+            <span class="more__what">An institute website with course listings, contact forms and animated
+              interactions.</span>
+            <span class="more__stack">Next.js, Tailwind CSS, shadcn/ui, Google APIs, Framer Motion, EmailJS</span>
+            <span class="more__links"><a class="ext" href="https://birbd.vercel.app/" target="_blank" rel="noopener"
+                aria-label="BAY Institute, live site">Live</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">Mosque Beauty Website</span>
+            <span class="more__what">A static showcase for a mosque with events, a gallery and donation
+              information.</span>
+            <span class="more__stack">HTML5, CSS3, JavaScript</span>
+            <span class="more__links"><a class="ext" href="https://xplorekamrul.github.io/mosque-beauty/"
+                target="_blank" rel="noopener" aria-label="Mosque Beauty Website, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/mosque-beauty" target="_blank" rel="noopener"
+                aria-label="Mosque Beauty Website, source code">Code</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">Portfolio Project</span>
+            <span class="more__what">A personal portfolio showcasing skills, projects and achievements, with
+              animations.</span>
+            <span class="more__stack">Vite, EmailJS, Framer Motion, React Router</span>
+            <span class="more__links"><a class="ext" href="https://infomdkamruzzaman.vercel.app/" target="_blank"
+                rel="noopener" aria-label="Portfolio Project, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/My_Porfolio_InReact" target="_blank" rel="noopener"
+                aria-label="Portfolio Project, source code">Code</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">AI Animate</span>
+            <span class="more__what">An interactive front-end app with animated text, AI-based features and image
+              display.</span>
+            <span class="more__stack">Next.js, Tailwind CSS, shadcn/ui</span>
+            <span class="more__links"><a class="ext" href="https://aianimate.vercel.app/" target="_blank" rel="noopener"
+                aria-label="AI Animate, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/TimerImageView-Typing" target="_blank" rel="noopener"
+                aria-label="AI Animate, source code">Code</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">Creative Agency</span>
+            <span class="more__what">A creative agency website with service showcases, a portfolio and responsive
+              layouts.</span>
+            <span class="more__stack">Next.js, Tailwind CSS, shadcn/ui</span>
+            <span class="more__links"><a class="ext" href="https://creative-agency-ten-tau.vercel.app/" target="_blank"
+                rel="noopener" aria-label="Creative Agency, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/creative_agency" target="_blank" rel="noopener"
+                aria-label="Creative Agency, source code">Code</a></span>
+          </li>
+          <li class="more__row">
+            <span class="more__name">Innovate</span>
+            <span class="more__what">A business landing page with modern UI components and clean, professional
+              layouts.</span>
+            <span class="more__stack">Next.js, TypeScript, Tailwind CSS, shadcn/ui</span>
+            <span class="more__links"><a class="ext" href="https://innovate-home-ten--green.vercel.app/" target="_blank"
+                rel="noopener" aria-label="Innovate, live site">Live</a><a class="ext"
+                href="https://github.com/xplorekamrul/innovateHomeTen" target="_blank" rel="noopener"
+                aria-label="Innovate, source code">Code</a></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====================== Services ====================== -->
+    <section class="sec" id="services" aria-labelledby="services-h">
+      <div class="sec__head">
+        <h2 class="sec__title" id="services-h">Services</h2>
+        <p class="sec__note">Good design creates a great impression and drives business success. Here is what you can
+          hire me for.</p>
+      </div>
+
+      <ul class="services">
+        <li class="svc">
+          <h3 class="svc__name">Web development</h3>
+          <p class="svc__desc">Dynamic, responsive websites built with modern tools and technologies, with
+            functionality, performance and a seamless experience across all devices.</p>
+          <a class="svc__ask" href="#contact" data-service="Web development">Ask about web development</a>
+        </li>
+        <li class="svc">
+          <h3 class="svc__name">UI/UX design</h3>
+          <p class="svc__desc">User-centered designs that enhance usability, with intuitive navigation and aesthetic
+            appeal for a satisfying experience.</p>
+          <a class="svc__ask" href="#contact" data-service="UI/UX design">Ask about UI/UX design</a>
+        </li>
+        <li class="svc">
+          <h3 class="svc__name">Logo design</h3>
+          <p class="svc__desc">Unique and memorable logos that represent your brand identity, combining creativity and
+            simplicity to leave a lasting visual impact.</p>
+          <a class="svc__ask" href="#contact" data-service="Logo design">Ask about logo design</a>
+        </li>
+        <li class="svc">
+          <h3 class="svc__name">Email signature</h3>
+          <p class="svc__desc">Professional email signatures that strengthen brand identity, carry your essential
+            contact information and leave a lasting impression.</p>
+          <a class="svc__ask" href="#contact" data-service="Email signature">Ask about email signatures</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ====================== Path ====================== -->
+    <section class="sec" id="path" aria-labelledby="path-h">
+      <div class="sec__head">
+        <h2 class="sec__title" id="path-h">Path</h2>
+        <p class="sec__note">From graphic design to full-stack development, 2019 to now.</p>
+      </div>
+
+      <div class="path">
+        <div>
+          <h3 class="path__h">Experience</h3>
+          <ol class="trail">
+            <li><span class="trail__when">2024 to now</span><span class="trail__what">MERN Stack Developer</span><span
+                class="trail__where">Creative IT Institute</span></li>
+            <li><span class="trail__when">Summer 2024</span><span class="trail__what">Front End Developer
+                Intern</span><span class="trail__where">Creative IT Institute</span></li>
+            <li><span class="trail__when">2023 to 2024</span><span class="trail__what">Web Designer</span><span
+                class="trail__where">Bright Skills Ltd.</span></li>
+            <li><span class="trail__when">2022 to 2024</span><span class="trail__what">Graphics Designer</span><span
+                class="trail__where">Freelance</span></li>
+            <li><span class="trail__when">2022 to 2023</span><span class="trail__what">Graphics Designer</span><span
+                class="trail__where">Orjon IT Institute</span></li>
+          </ol>
+        </div>
+        <div>
+          <h3 class="path__h">Education</h3>
+          <ol class="trail">
+            <li><span class="trail__when">2024 to now</span><span class="trail__what">MERN Stack Development</span><span
+                class="trail__where">Creative IT Institute</span></li>
+            <li><span class="trail__when">Summer 2023</span><span class="trail__what">Web Development</span><span
+                class="trail__where">Bright Skills Ltd.</span></li>
+            <li><span class="trail__when">Winter 2023</span><span class="trail__what">Front End Development</span><span
+                class="trail__where">Online course platform</span></li>
+            <li><span class="trail__when">2022 to 2023</span><span class="trail__what">Graphics Design</span><span
+                class="trail__where">Graphics IT Center</span></li>
+            <li><span class="trail__when">2020 to 2024</span><span class="trail__what">Diploma in CSE</span><span
+                class="trail__where">Jashore Polytechnic Institute</span></li>
+            <li id="trailEnd"><span class="trail__when">2019 to 2020</span><span class="trail__what">Secondary School
+                Certificate</span><span class="trail__where">Gazir Dorgha Madrasha</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== About ====================== -->
+    <section class="sec" id="about" aria-labelledby="about-h">
+      <div class="sec__head">
+        <h2 class="sec__title" id="about-h">About</h2>
+        <p class="sec__note">Why hire me? I'm passionate about web development and I bring a creative touch through
+          graphic design.</p>
+      </div>
+
+      <div class="about">
+        <p class="about__say">I'm a passionate front-end web developer with a creative flair for graphic design. I
+          specialize in building responsive, user-friendly websites that turn ideas into engaging digital experiences.
+        </p>
+
+        <dl class="facts">
+          <div>
+            <dt>Name</dt>
+            <dd>Md Kamruzzaman</dd>
+          </div>
+          <div>
+            <dt>Based in</dt>
+            <dd>Jashore 7420, Bangladesh</dd>
+          </div>
+          <div>
+            <dt>Nationality</dt>
+            <dd>Bangladeshi</dd>
+          </div>
+          <div>
+            <dt>Languages</dt>
+            <dd>English, Bengali, Hindi, Urdu</dd>
+          </div>
+          <div>
+            <dt>Freelance</dt>
+            <dd>Available</dd>
+          </div>
+        </dl>
+
+        <ul class="figures">
+          <li><b>2+</b><span>years of experience</span></li>
+          <li><b>12+</b><span>projects completed</span></li>
+          <li><b>8+</b><span>technologies mastered</span></li>
+          <li><b>200+</b><span>code commits</span></li>
+        </ul>
+
+        <div class="kit">
+          <div>
+            <h3>Code</h3>
+            <p>HTML5, CSS3, JavaScript, React, Next.js, Vite, Node.js, Tailwind CSS, GitHub</p>
+          </div>
+          <div>
+            <h3>Design</h3>
+            <p>Figma, Photoshop, Illustrator</p>
+          </div>
+          <div>
+            <h3>Also used in the projects above</h3>
+            <p>TypeScript, Prisma, PostgreSQL, MySQL, MongoDB, Supabase, Socket.io, LiveKit, NextAuth, Zod, Zustand,
+              shadcn/ui, Tiptap, Framer Motion</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== Contact ====================== -->
+    <section class="summit" id="contact" aria-labelledby="contact-h">
+      <div class="sec__head">
+        <h2 class="sec__title" id="contact-h">Let's work together</h2>
+        <p class="sec__note halo">Let's collaborate to bring your vision to life.</p>
+      </div>
+
+      <div class="summit__view" aria-hidden="true"></div>
+
+      <div class="sheet">
+        <div class="reach">
+          <h3 class="sheet__h">Write to me</h3>
+          <a class="reach__mail" id="mailLink"
+            href="mailto:info.mdkamruzzaman.dev@gmail.com">info.mdkamruzzaman.dev<wbr>@gmail.com</a>
+          <button class="btn" id="copyMail" type="button">Copy email address</button>
+
+          <dl class="facts">
+            <div>
+              <dt>Phone</dt>
+              <dd><a href="tel:+8801516573530">+880 1516 573 530</a></dd>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd><a class="ext" href="https://wa.me/8801516573530" target="_blank" rel="noopener">Message me on
+                  WhatsApp</a></dd>
+            </div>
+            <div>
+              <dt>Address</dt>
+              <dd>Jashore (7420), Bangladesh</dd>
+            </div>
+          </dl>
+
+          <ul class="social" aria-label="Profiles">
+            <li><a class="ext" href="https://github.com/xplorekamrul" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a class="ext" href="https://www.linkedin.com/in/xplorekamrul/" target="_blank"
+                rel="noopener">LinkedIn</a></li>
+            <li><a class="ext" href="https://www.facebook.com/xplorekamrul" target="_blank" rel="noopener">Facebook</a>
+            </li>
+          </ul>
+        </div>
+
+        <form class="brief" id="brief" novalidate>
+          <h3 class="sheet__h">Or start the message here</h3>
+          <fieldset class="chips">
+            <legend>What do you need?</legend>
+            <label class="chip"><input type="radio" name="service" id="svc-web" value="Web development"><span>Web
+                development</span></label>
+            <label class="chip"><input type="radio" name="service" id="svc-ui" value="UI/UX design"><span>UI/UX
+                design</span></label>
+            <label class="chip"><input type="radio" name="service" id="svc-logo" value="Logo design"><span>Logo
+                design</span></label>
+            <label class="chip"><input type="radio" name="service" id="svc-mail" value="Email signature"><span>Email
+                signature</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="briefName">Your name</label>
+            <input id="briefName" name="name" type="text" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="briefMsg">Your message</label>
+            <textarea id="briefMsg" name="message"
+              placeholder="What are you building, and when do you need it?"></textarea>
+          </div>
+          <div class="brief__go">
+            <a class="btn btn--accent ext" id="briefWa" href="https://wa.me/8801516573530" target="_blank"
+              rel="noopener">Open WhatsApp with this message</a>
+            <a class="btn" id="briefMail" href="mailto:info.mdkamruzzaman.dev@gmail.com">Open an email draft</a>
+          </div>
+          <p class="brief__note">Nothing is sent from this page. The buttons open WhatsApp or your mail app with the
+            message filled in.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="year">2026</span> Md Kamruzzaman</span>
+    <span>Built with HTML, CSS, GSAP and Three.js</span>
+    <a href="#home">Back to the top</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Libraries: GSAP + ScrollTrigger for motion, Three.js for the terrain. The page still works if they fail to load. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    (() => {
+      'use strict';
+
+      /* ------------------------------------------------------------------
+         Helpers
+      ------------------------------------------------------------------ */
+      const root = document.documentElement;
+      const $ = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+      const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const smooth = t => t * t * (3 - 2 * t);
+      const token = name => getComputedStyle(root).getPropertyValue(name).trim();
+
+      const hasGSAP = typeof window.gsap !== 'undefined';
+      const hasST = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (hasST) gsap.registerPlugin(ScrollTrigger);
+
+      /* ------------------------------------------------------------------
+         Field log: the small game. Eight things to find, saved per browser.
+         Call Log.award('id') from anywhere.
+      ------------------------------------------------------------------ */
+      const Log = (() => {
+        const KEY = 'mk-field-log';
+        const items = [
+          { id: 'setoff', name: 'Set off', hint: 'Scroll past the first screen.' },
+          { id: 'surveyor', name: 'Surveyor', hint: finePointer ? 'Click the terrain to send a ripple.' : 'Tap the terrain to send a ripple.' },
+          { id: 'lights', name: 'Day and night', hint: 'Switch the theme.' },
+          { id: 'notes', name: 'Field notes', hint: 'Open three projects.' },
+          { id: 'trail', name: 'Trail walked', hint: 'Follow the path back to 2019.' },
+          { id: 'signal', name: 'Signal sent', hint: 'Copy the email address or open a contact link.' },
+          { id: 'summit', name: 'Summit', hint: 'Reach the end of the page.' },
+          { id: 'xplore', name: 'Secret', hint: finePointer ? 'Type the first six letters of my GitHub handle.' : 'Tap the mk. logo five times.' }
+        ];
+        const got = new Set();
+        const el = {};
+        let auroraOn = false;
+        let toastTimer = 0;
+
+        const rank = n => (n >= items.length ? 'Explorer' : n >= 5 ? 'Pathfinder' : n >= 2 ? 'Scout' : 'Visitor');
+
+        function save() {
+          try { localStorage.setItem(KEY, JSON.stringify({ got: [...got], aurora: auroraOn })); } catch (e) { }
+        }
+        function load() {
+          try {
+            const saved = JSON.parse(localStorage.getItem(KEY) || '{}');
+            (saved.got || []).forEach(id => { if (items.some(i => i.id === id)) got.add(id); });
+            auroraOn = Boolean(saved.aurora) && got.size === items.length;
+          } catch (e) { }
+        }
+
+        function paint() {
+          const n = got.size;
+          el.count.textContent = `${n}/${items.length}`;
+          el.ring.style.strokeDashoffset = String(100 - (n / items.length) * 100);
+          el.rank.textContent = rank(n);
+          el.btn.setAttribute('aria-label', `Field log, ${n} of ${items.length} found`);
+          $$('li', el.list).forEach(li => li.classList.toggle('is-got', got.has(li.dataset.id)));
+          el.reward.hidden = n < items.length;
+          el.aurora.checked = auroraOn;
+        }
+
+        function say(text) {
+          if (!el.toast) return;
+          el.toast.textContent = text;
+          el.toast.classList.add('is-on');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => el.toast.classList.remove('is-on'), 3200);
+        }
+
+        function award(id) {
+          const item = items.find(i => i.id === id);
+          if (!item || got.has(id) || !el.btn) return;
+          got.add(id);
+          save();
+          paint();
+          say(got.size === items.length
+            ? 'Expedition complete. Aurora terrain is unlocked in the field log.'
+            : `Logged: ${item.name} (${got.size} of ${items.length})`);
+        }
+
+        function init() {
+          Object.assign(el, {
+            btn: $('#logBtn'), count: $('#logCount'), ring: $('#logRing'), panel: $('#logPanel'),
+            list: $('#logList'), rank: $('#logRank'), reward: $('#logReward'), aurora: $('#auroraToggle'), toast: $('#toast')
+          });
+          if (!el.btn || !el.panel) { el.btn = null; return; }
+
+          items.forEach(item => {
+            const li = document.createElement('li');
+            const name = document.createElement('b');
+            const hint = document.createElement('span');
+            li.dataset.id = item.id;
+            name.textContent = item.name;
+            hint.textContent = item.hint;
+            li.append(name, hint);
+            el.list.append(li);
+          });
+          load();
+          paint();
+
+          const open = on => { el.panel.hidden = !on; el.btn.setAttribute('aria-expanded', String(on)); };
+          el.btn.addEventListener('click', () => open(el.panel.hidden));
+          $('#logClose').addEventListener('click', () => { open(false); el.btn.focus(); });
+          document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !el.panel.hidden) { open(false); el.btn.focus(); }
+          });
+          document.addEventListener('click', e => {
+            if (!el.panel.hidden && !e.target.closest('#logPanel, #logBtn')) open(false);
+          });
+          el.aurora.addEventListener('change', () => { auroraOn = el.aurora.checked; save(); Terrain.setAurora(auroraOn); });
+          $('#logReset').addEventListener('click', () => {
+            got.clear(); auroraOn = false; save(); paint(); Terrain.setAurora(false);
+          });
+          if (auroraOn) Terrain.setAurora(true);
+        }
+
+        return { init, award, say };
+      })();
+
+      /* ------------------------------------------------------------------
+         Theme: follows the system until the visitor picks one.
+      ------------------------------------------------------------------ */
+      const Theme = (() => {
+        const mq = matchMedia('(prefers-color-scheme: dark)');
+        const subs = [];
+        let btn = null;
+        let last = '';
+
+        const current = () => root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light');
+
+        function paint() {
+          const t = current();
+          if (btn) {
+            btn.dataset.mode = t;
+            btn.setAttribute('aria-label', t === 'dark' ? 'Switch to the light theme' : 'Switch to the dark theme');
+          }
+          if (t === last) return;
+          last = t;
+          subs.forEach(fn => fn(t));
+        }
+
+        function set(t) {
+          const apply = () => {
+            root.setAttribute('data-theme', t);
+            try { localStorage.setItem('mk-theme', t); } catch (e) { }
+            paint();
+          };
+          // Plain cross-fade where View Transitions are missing or motion is reduced.
+          if (reduce || typeof document.startViewTransition !== 'function') {
+            root.classList.add('theme-fade');
+            apply();
+            setTimeout(() => root.classList.remove('theme-fade'), 600);
+            return;
+          }
+          // Otherwise the new theme opens as a circle from the switch.
+          const r = btn.getBoundingClientRect();
+          const x = r.left + r.width / 2;
+          const y = r.top + r.height / 2;
+          root.style.setProperty('--vt-x', `${x}px`);
+          root.style.setProperty('--vt-y', `${y}px`);
+          root.style.setProperty('--vt-r', `${Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))}px`);
+          root.classList.add('vt-theme');
+          const done = () => root.classList.remove('vt-theme');
+          try { document.startViewTransition(apply).finished.then(done, done); } catch (e) { apply(); done(); }
+        }
+
+        function init() {
+          btn = $('#themeBtn');
+          if (btn) {
+            btn.addEventListener('click', () => {
+              set(current() === 'dark' ? 'light' : 'dark');
+              Log.award('lights');
+            });
+          }
+          mq.addEventListener('change', paint);
+          new MutationObserver(paint).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+          paint();
+        }
+
+        return { init, current, onChange: fn => subs.push(fn) };
+      })();
+
+      /* Coordinates in the hero follow the cursor across the terrain, centred on Jashore. */
+      const coordsEl = $('#coords');
+      function survey(ground) {
+        if (!coordsEl) return;
+        const lat = 23.1667 + ground[1] * 0.0011;
+        const lon = 89.2089 + ground[0] * 0.0011;
+        coordsEl.textContent = `${lat.toFixed(4)}° N, ${lon.toFixed(4)}° E`;
+      }
+
+      /* ------------------------------------------------------------------
+         Terrain (Three.js)
+         One plane, pushed up by noise in the vertex shader and drawn as a
+         contour map in the fragment shader. A depth-only copy of the plane
+         hides the lines behind hills, so the page background shows through
+         everywhere else and both themes work without touching the shaders.
+      ------------------------------------------------------------------ */
+      const Terrain = (() => {
+        const api = { ready: false, intro() { }, setAurora() { }, burst() { } };
+        const canvas = $('#terrain');
+        const hero = $('#home');
+        const summit = $('#contact');
+        const off = () => {
+          if (canvas) canvas.style.display = 'none';
+          const hint = $('#heroHint');
+          if (hint) hint.hidden = true;
+          return api;
+        };
+        if (!canvas || !hero || !summit || typeof window.THREE === 'undefined') return off();
+
+        try {
+          /* Shared GLSL: the height of the ground at plane position p. */
+          const HEIGHT = `
+        uniform float uTime;
+        uniform float uAmp;
+        uniform float uPeak;
+        uniform float uMouseAmp;
+        uniform vec2 uMouse;
+        uniform vec3 uRip[3];
+
+        vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
+
+        // 2D simplex noise (Ian McEwan, Ashima Arts, MIT licence)
+        float snoise(vec2 v) {
+          const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+          vec2 i = floor(v + dot(v, C.yy));
+          vec2 x0 = v - i + dot(i, C.xx);
+          vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+          vec4 x12 = x0.xyxy + C.xxzz;
+          x12.xy -= i1;
+          i = mod289(i);
+          vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+          vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
+          m = m * m;
+          m = m * m;
+          vec3 x = 2.0 * fract(p * C.www) - 1.0;
+          vec3 h = abs(x) - 0.5;
+          vec3 ox = floor(x + 0.5);
+          vec3 a0 = x - ox;
+          m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
+          vec3 g;
+          g.x = a0.x * x0.x + h.x * x0.y;
+          g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+          return 130.0 * dot(m, g);
+        }
+
+        float height(vec2 p) {
+          float t = uTime * 0.03;
+
+          // rolling ground: three octaves drifting slowly
+          float h = snoise(p * 0.042 + vec2(t, t * 0.55));
+          h += 0.45 * snoise(p * 0.105 + vec2(7.3 - t * 0.9, 2.1));
+          h += 0.13 * snoise(p * 0.26 + vec2(21.7, t * 1.4));
+          h *= 2.7 * uAmp;
+
+          // a hill under the pointer
+          vec2 dm = p - uMouse;
+          h += uMouseAmp * 2.0 * exp(-dot(dm, dm) / 16.0);
+
+          // ripples from clicks: xy = centre, z = start time
+          for (int i = 0; i < 3; i++) {
+            float age = uTime - uRip[i].z;
+            if (age > 0.0 && age < 7.0) {
+              float r = distance(p, uRip[i].xy);
+              float front = age * 6.5;
+              h += sin((r - front) * 1.4) * exp(-abs(r - front) * 0.4) * exp(-age * 0.65) * 1.1;
+            }
+          }
+
+          // the summit that rises behind the contact section
+          vec2 dp = p - vec2(0.0, 6.0);
+          float d2 = dot(dp, dp);
+          h *= 1.0 - 0.55 * uPeak * exp(-d2 / 1200.0);
+          h += uPeak * (9.0 * exp(-d2 / 64.0) * (1.0 + 0.16 * snoise(p * 0.2 + 3.7)) + 2.4 * exp(-d2 / 420.0));
+          return h;
+        }
+      `;
+
+          const VERT = `
+        invariant gl_Position;   // both passes must land on exactly the same depth
+      ` + HEIGHT + `
+        varying vec2 vP;
+        varying vec2 vGrad;
+        varying float vDist;
+
+        void main() {
+          vP = position.xy;
+          vec3 p = position;
+          p.z += height(position.xy);
+          // slope of the ground, for the shaded relief
+          vec2 e = vec2(0.4, 0.0);
+          vGrad = vec2(height(vP + e.xy) - height(vP - e.xy), height(vP + e.yx) - height(vP - e.yx)) / 0.8;
+          vec4 mv = modelViewMatrix * vec4(p, 1.0);
+          vDist = -mv.z;
+          gl_Position = projectionMatrix * mv;
+        }
+      `;
+
+          const FRAG = HEIGHT + `
+        uniform vec3 uLine;
+        uniform vec3 uAccent;
+        uniform vec3 uWater;
+        uniform float uInvert;
+        uniform float uAurora;
+        uniform float uPx;
+        uniform vec2 uFog;
+        varying vec2 vP;
+        varying vec2 vGrad;
+        varying float vDist;
+
+        // 1.0 on an iso-line of v (whole numbers), antialiased. w is the half width in pixels.
+        float iso(float v, float w) {
+          float d = abs(fract(v - 0.5) - 0.5) / max(fwidth(v), 0.000001);
+          return 1.0 - smoothstep(w - 0.6, w + 0.6, d);
+        }
+
+        void main() {
+          float h = height(vP);
+
+          // contour lines every 0.24 units, a heavier index line every fifth
+          float f = h / 0.24;
+          float df = fwidth(f);
+          float relief = smoothstep(0.0004, 0.004, df);
+          float minor = iso(f, 0.5 * uPx) * (1.0 - smoothstep(0.30, 0.62, df)) * relief;
+          float major = iso(f * 0.2, 0.8 * uPx) * (1.0 - smoothstep(1.5, 2.8, df)) * relief;
+
+          // shaded relief, sun in the north-west as on a printed map.
+          // Light theme inks the slopes facing away; dark theme lights the slopes facing the sun.
+          vec3 sun = normalize(vec3(-0.55, 0.55, 0.62));
+          float facing = dot(normalize(vec3(-vGrad, 1.0)), sun) - sun.z;
+          float fill = smoothstep(0.0, 0.42, facing * mix(-1.0, 1.0, uInvert)) * (0.14 - 0.05 * uPeak);
+
+          // faint graticule
+          vec2 gq = vP / 8.0;
+          vec2 gd = max(fwidth(gq), vec2(0.000001));
+          vec2 gridLine = 1.0 - smoothstep(vec2(0.0), vec2(1.3 * uPx), abs(fract(gq - 0.5) - 0.5) / gd);
+          float grid = max(gridLine.x, gridLine.y) * 0.07 * (1.0 - smoothstep(0.03, 0.12, max(gd.x, gd.y)));
+
+          // pointer: a ring on the ground and warm contours around it
+          float dm = distance(vP, uMouse);
+          float nearPointer = (1.0 - smoothstep(1.5, 7.5, dm)) * uMouseAmp;
+          float ring = (1.0 - smoothstep(0.7 * uPx, 1.9 * uPx, abs(dm - 1.3) / max(fwidth(dm), 0.000001))) * uMouseAmp;
+
+          // colour: ink, cooler in low ground, marigold near the pointer and on the summit
+          float warm = clamp(nearPointer + smoothstep(4.5, 9.5, h), 0.0, 1.0);
+          vec3 lineCol = mix(uLine, uWater, (1.0 - smoothstep(-3.0, -0.6, h)) * 0.6);
+          lineCol = mix(lineCol, uAccent, warm);
+          vec3 aurora = mix(uWater, uAccent, 0.5 + 0.5 * sin(h * 1.1 + uTime * 0.5 + vP.x * 0.08));
+          lineCol = mix(lineCol, aurora, uAurora);
+
+          float lines = max(minor * 0.34, major * 0.66);
+          lines = min(1.0, lines * (1.0 + 0.9 * warm + 0.5 * uAurora));
+          lines = max(lines, ring * 0.95);
+          float under = max(fill, grid);
+          vec3 col = lines >= under ? lineCol : uLine;
+          float a = max(lines, under);
+
+          // fade into the distance and before the plane's edges
+          float fog = 1.0 - smoothstep(uFog.x, uFog.y, vDist);
+          vec2 edge = 1.0 - smoothstep(vec2(46.0), vec2(60.0), abs(vP));
+          gl_FragColor = vec4(col, a * fog * edge.x * edge.y);
+        }
+      `;
+
+          const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+          renderer.setClearColor(0x000000, 0);
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 400);
+
+          const U = {
+            uTime: { value: reduce ? 40 : 0 },
+            uAmp: { value: 1 },
+            uPeak: { value: 0 },
+            uMouse: { value: new THREE.Vector2(0, 4) },
+            uMouseAmp: { value: 0 },
+            uRip: { value: [new THREE.Vector3(0, 0, -99), new THREE.Vector3(0, 0, -99), new THREE.Vector3(0, 0, -99)] },
+            uLine: { value: new THREE.Color() },
+            uAccent: { value: new THREE.Color() },
+            uWater: { value: new THREE.Color() },
+            uInvert: { value: 0 },
+            uAurora: { value: 0 },
+            uPx: { value: 1 },
+            uFog: { value: new THREE.Vector2(25, 54) }
+          };
+
+          const segments = innerWidth < 760 ? 160 : 200;
+          const ground = new THREE.PlaneGeometry(128, 128, segments, segments);
+          // Depth only: writes no colour, sits a hair behind the lines (constant offset, so nothing leaks at ridges).
+          const mask = new THREE.Mesh(ground, new THREE.ShaderMaterial({
+            uniforms: U, vertexShader: VERT, fragmentShader: 'void main() { gl_FragColor = vec4(0.0); }',
+            colorWrite: false, polygonOffset: true, polygonOffsetFactor: 0, polygonOffsetUnits: 4
+          }));
+          const lines = new THREE.Mesh(ground, new THREE.ShaderMaterial({
+            uniforms: U, vertexShader: VERT, fragmentShader: FRAG,
+            transparent: true, depthWrite: false, extensions: { derivatives: true }
+          }));
+          mask.rotation.x = lines.rotation.x = -Math.PI / 2;   // lay the plane flat: plane y runs away from the camera
+          mask.frustumCulled = lines.frustumCulled = false;
+          mask.renderOrder = 0;
+          lines.renderOrder = 1;
+          scene.add(mask, lines);
+
+          let W = 1, H = 1, heroH = 1, summitTop = Infinity;
+          let visible = true, dirty = true, ripN = 0;
+          const cam = { pos: [0, 15, 20], look: [0, 0, -2], fov: 36 };
+          const pointer = { x: 0, y: 4, amp: 0, seen: 0 };
+
+          function measure() {
+            heroH = hero.offsetHeight;
+            summitTop = summit.getBoundingClientRect().top + scrollY;
+            dirty = true;
+          }
+
+          function resize() {
+            const w = innerWidth, h = innerHeight;
+            if (w === W && Math.abs(h - H) < 130) { measure(); return; }   // ignore the mobile URL bar sliding in and out
+            W = w; H = h;
+            const ratio = Math.min(devicePixelRatio || 1, w < 760 ? 1.5 : 2);
+            renderer.setPixelRatio(ratio);
+            renderer.setSize(W, H, false);
+            camera.aspect = W / H;
+            U.uPx.value = ratio;
+            measure();
+          }
+
+          function recolor() {
+            U.uLine.value.set(token('--ink'));
+            U.uAccent.value.set(token('--accent'));
+            U.uWater.value.set(token('--water'));
+            U.uInvert.value = Theme.current() === 'dark' ? 1 : 0;
+            dirty = true;
+          }
+
+          // Screen point -> point on the ground plane, in the plane's own coordinates.
+          function groundAt(cx, cy) {
+            const nx = (cx / W) * 2 - 1, ny = 1 - (cy / H) * 2;
+            const [px, py, pz] = cam.pos;
+            let fx = cam.look[0] - px, fy = cam.look[1] - py, fz = cam.look[2] - pz;
+            const fl = Math.hypot(fx, fy, fz) || 1;
+            fx /= fl; fy /= fl; fz /= fl;
+            let rx = -fz, rz = fx;                               // right = forward x up
+            const rl = Math.hypot(rx, rz) || 1;
+            rx /= rl; rz /= rl;
+            const ux = -rz * fy, uy = rz * fx - rx * fz, uz = rx * fy;   // up = right x forward
+            const th = Math.tan((cam.fov * Math.PI) / 360);
+            const dx = fx + rx * nx * th * (W / H) + ux * ny * th;
+            const dy = fy + uy * ny * th;
+            const dz = fz + rz * nx * th * (W / H) + uz * ny * th;
+            if (dy > -0.0001) return null;                       // looking at the sky
+            const t = (1.2 - py) / dy;                           // meet the ground a little above zero, where the hill top will be
+            return [px + dx * t, -(pz + dz * t)];
+          }
+
+          // Camera: a tilted map in the hero, dropping low as you scroll; a low view of the summit at the end.
+          function pose(y) {
+            const tall = clamp((1.2 - W / H) / 0.7);             // 0 on wide screens, 1 on phones
+            const s = clamp((y + H - summitTop) / (H * 1.2));    // 0..1 while the contact section scrolls in
+            if (s > 0) {
+              const e = 1 - Math.pow(1 - s, 3);
+              cam.pos[1] = lerp(3.4, 5.4, e);
+              cam.pos[2] = lerp(38, 33, e) + tall * 14;
+              cam.look[1] = lerp(3.4, 5.6, e);
+              cam.look[2] = -6;
+              cam.fov = lerp(34, 50, tall);
+              U.uPeak.value = e;
+              U.uFog.value.set(36 + tall * 10, 94 + tall * 16);
+            } else {
+              const p = smooth(clamp(y / heroH));
+              const back = 1 + tall * 0.25;
+              cam.pos[1] = lerp(15, 7.5, p) * back;
+              cam.pos[2] = lerp(20, 15, p) * back;
+              cam.look[1] = lerp(0, 0.8, p);
+              cam.look[2] = lerp(-2, -12, p);
+              cam.fov = lerp(36, 54, tall);
+              U.uPeak.value = 0;
+              U.uFog.value.set(lerp(25, 22, p) * back, lerp(54, 52, p) * back);
+            }
+            camera.fov = cam.fov;
+            camera.position.set(cam.pos[0], cam.pos[1], cam.pos[2]);
+            camera.lookAt(cam.look[0], cam.look[1], cam.look[2]);
+            camera.updateProjectionMatrix();
+          }
+
+          let then = performance.now();
+          function frame(now) {
+            requestAnimationFrame(frame);
+            const y = scrollY;
+            const dt = Math.min(0.05, (now - then) / 1000);
+            then = now;
+            // Only draw while the hero or the contact section is on screen.
+            visible = y < heroH || y + H > summitTop;
+            if (!visible || document.hidden) return;
+            if (!reduce) U.uTime.value += dt;
+            else if (!dirty) return;
+            dirty = false;
+
+            pose(y);
+            const follow = 1 - Math.pow(0.0015, dt);
+            U.uMouse.value.x += (pointer.x - U.uMouse.value.x) * follow;
+            U.uMouse.value.y += (pointer.y - U.uMouse.value.y) * follow;
+            if (!finePointer && now - pointer.seen > 1500) pointer.amp = 0;
+            U.uMouseAmp.value += (pointer.amp - U.uMouseAmp.value) * (1 - Math.pow(0.02, dt));
+            renderer.render(scene, camera);
+          }
+
+          function track(e) {
+            if (!visible) return;
+            const g = groundAt(e.clientX, e.clientY);
+            if (!g) return;
+            pointer.x = clamp(g[0], -48, 48);
+            pointer.y = clamp(g[1], -48, 48);
+            pointer.amp = 1;
+            pointer.seen = performance.now();
+            if (scrollY < heroH) survey([pointer.x, pointer.y]);
+          }
+          function rippleAt(cx, cy) {
+            const g = reduce ? null : groundAt(cx, cy);
+            if (g) U.uRip.value[ripN++ % 3].set(g[0], g[1], U.uTime.value);
+          }
+
+          if (!reduce) {
+            addEventListener('pointermove', track, { passive: true });
+            addEventListener('pointerdown', track, { passive: true });
+            root.addEventListener('mouseleave', () => { pointer.amp = 0; });
+          }
+          [hero, summit].forEach(section => section.addEventListener('click', e => {
+            if (e.target.closest('a, button, input, textarea, label, .sheet')) return;
+            rippleAt(e.clientX, e.clientY);
+            Log.award('surveyor');
+          }));
+
+          api.ready = true;
+          api.intro = animate => {
+            if (!animate || !hasGSAP) return;
+            gsap.fromTo(U.uAmp, { value: 0.3 }, { value: 1, duration: 2.6, ease: 'power3.out' });
+            gsap.fromTo(canvas, { opacity: 0 }, { opacity: 1, duration: 1.5, ease: 'power2.out' });
+          };
+          api.setAurora = on => {
+            const to = on ? 1 : 0;
+            if (hasGSAP && !reduce) gsap.to(U.uAurora, { value: to, duration: 1.2, ease: 'power2.out' });
+            else { U.uAurora.value = to; dirty = true; }
+          };
+          api.burst = () => {
+            [0.28, 0.5, 0.72].forEach((fx, i) => setTimeout(() => rippleAt(W * fx, H * (0.5 + 0.08 * i)), i * 160));
+          };
+
+          Theme.onChange(recolor);
+          addEventListener('resize', resize);
+          addEventListener('scroll', () => { dirty = true; }, { passive: true });
+          if ('ResizeObserver' in window) new ResizeObserver(measure).observe(document.body);
+          resize();
+          recolor();
+          requestAnimationFrame(frame);
+        } catch (err) {
+          console.error(err);
+          return off();
+        }
+        return api;
+      })();
+
+      /* ------------------------------------------------------------------
+         Hero name
+         Fitted to the full line. Archivo's width axis then lets each letter
+         swell under the cursor while the others give way, so the line keeps
+         its length.
+      ------------------------------------------------------------------ */
+      const Name = (() => {
+        const h1 = $('#name');
+        const row = $('.name__row');
+        const chars = row ? $$('.ch', row) : [];
+        const n = chars.length;
+        const now = new Array(n).fill(0);     // current swell per letter, 0..1
+        const SPREAD = 0.11;                  // width of the swell, as a share of the line
+        let centers = [];
+        let base = 74, gain = 32;             // resting width (wdth axis) and how far it may move
+        let at = 0.5, strength = 0, raf = 0;
+
+        const paint = (el, width, weight) => {
+          el.style.fontVariationSettings = `"wdth" ${width.toFixed(2)}, "wght" ${Math.round(weight)}`;
+        };
+
+        function fit() {
+          if (!n) return;
+          const narrow = innerWidth < 720;
+          base = narrow ? 64 : 74;
+          gain = narrow ? 26 : 32;
+          chars.forEach(c => paint(c, base, 800));
+          row.style.fontSize = '100px';
+          let natural = 0;
+          chars.forEach(c => { natural += c.getBoundingClientRect().width; });
+          const room = row.clientWidth;
+          if (natural > 0 && room > 0) row.style.fontSize = `${Math.max(34, (100 * room * 0.972) / natural).toFixed(2)}px`;
+          const box = row.getBoundingClientRect();
+          centers = chars.map(c => {
+            const b = c.getBoundingClientRect();
+            return (b.left + b.width / 2 - box.left) / box.width;
+          });
+          kick();
+        }
+
+        function tick() {
+          raf = 0;
+          let mean = 0, moving = false;
+          for (let i = 0; i < n; i++) {
+            const d = (centers[i] - at) / SPREAD;
+            const target = strength * Math.exp(-d * d);
+            now[i] += (target - now[i]) * 0.16;
+            if (Math.abs(target - now[i]) > 0.003) moving = true;
+            mean += now[i];
+          }
+          mean /= n;
+          for (let i = 0; i < n; i++) {
+            const k = now[i] - mean;          // what one letter gains, the others lose
+            paint(chars[i], clamp(base + k * gain, 62, 100), 800 + k * 110);
+          }
+          if (moving) raf = requestAnimationFrame(tick);
+        }
+        const kick = () => { if (!raf && n) raf = requestAnimationFrame(tick); };
+
+        function init() {
+          if (!n) return;
+          fit();
+          let timer = 0;
+          addEventListener('resize', () => { clearTimeout(timer); timer = setTimeout(fit, 120); });
+          if (reduce) return;
+
+          if (finePointer) {
+            addEventListener('pointermove', e => {
+              const box = row.getBoundingClientRect();
+              if (box.bottom < 0 || box.top > innerHeight) {
+                if (strength) { strength = 0; kick(); }
+                return;
+              }
+              const gap = Math.max(0, Math.abs(e.clientY - (box.top + box.height / 2)) - box.height / 2);
+              strength = clamp(1 - gap / (box.height * 1.5));
+              at = (e.clientX - box.left) / box.width;
+              kick();
+            }, { passive: true });
+            root.addEventListener('mouseleave', () => { strength = 0; kick(); });
+          } else {
+            // Touch screens: the swell travels through the name as the hero scrolls away.
+            addEventListener('scroll', () => {
+              const p = scrollY / Math.max(1, innerHeight * 0.7);
+              if (p > 1.3) {
+                if (strength) { strength = 0; kick(); }
+                return;
+              }
+              strength = p > 0.01 ? 1 : 0;
+              at = p * 1.3 - 0.15;
+              kick();
+            }, { passive: true });
+          }
+        }
+
+        // One swell from left to right. The intro plays it once.
+        function wave(duration) {
+          if (!n || reduce || !hasGSAP) return;
+          const state = { v: 0 };
+          gsap.to(state, {
+            v: 1, duration, ease: 'power1.inOut',
+            onUpdate() { strength = Math.sqrt(Math.sin(Math.PI * state.v)); at = -0.1 + 1.2 * state.v; kick(); },
+            onComplete() { strength = 0; kick(); }
+          });
+        }
+
+        return { init, fit, wave, settle() { if (h1) h1.classList.add('is-in'); } };
+      })();
+
+      /* ------------------------------------------------------------------
+         Intro: one sequence on load, after the fonts are in.
+      ------------------------------------------------------------------ */
+      function intro() {
+        const start = () => {
+          Name.fit();
+          root.classList.remove('is-loading');
+          if (!hasGSAP || reduce) { Name.settle(); Terrain.intro(false); return; }
+
+          Terrain.intro(true);
+          gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: () => Name.settle() })
+            .from('.ch', { yPercent: 118, duration: 1.15, stagger: 0.04 }, 0.05)
+            .from('.hero__md', { autoAlpha: 0, x: -14, duration: 0.8 }, 0.5)
+            .from('.hero__survey', { autoAlpha: 0, y: 12, duration: 0.8 }, 0.6)
+            .from('.hero__foot > *', { autoAlpha: 0, y: 18, duration: 0.9, stagger: 0.08 }, 0.7)
+            .add(() => Name.wave(1.5), 0.8);
+        };
+        const fonts = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+        Promise.race([fonts, new Promise(resolve => setTimeout(resolve, 1400))]).then(start, start);
+      }
+
+      /* ------------------------------------------------------------------
+         Top bar, menu, in-page links, section tracking
+      ------------------------------------------------------------------ */
+      const Nav = (() => {
+        function init() {
+          const top = $('#top');
+          const menu = $('#menu');
+          const menuBtn = $('#menuBtn');
+          const links = $$('.nav a');
+
+          // Bar background once the page moves, plus two log entries that depend on scroll.
+          let queued = false;
+          const onScroll = () => {
+            queued = false;
+            const y = scrollY;
+            top.classList.toggle('is-stuck', y > 12);
+            if (y > innerHeight * 0.6) Log.award('setoff');
+            if (y > innerHeight && y + innerHeight >= root.scrollHeight - 60) Log.award('summit');
+          };
+          addEventListener('scroll', () => {
+            if (!queued) { queued = true; requestAnimationFrame(onScroll); }
+          }, { passive: true });
+          onScroll();
+
+          const setMenu = open => {
+            menu.hidden = !open;
+            menuBtn.setAttribute('aria-expanded', String(open));
+            menuBtn.textContent = open ? 'Close' : 'Menu';
+            root.classList.toggle('menu-open', open);
+            if (open && hasGSAP && !reduce) {
+              gsap.from('.menu nav a', { yPercent: 60, autoAlpha: 0, duration: 0.6, stagger: 0.05, ease: 'expo.out' });
+            }
+          };
+          menuBtn.addEventListener('click', () => setMenu(menu.hidden));
+          addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !menu.hidden) { setMenu(false); menuBtn.focus(); }
+          });
+          matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+
+          // In-page links scroll smoothly and move focus to the section they open.
+          document.addEventListener('click', e => {
+            const link = e.target.closest('a[href^="#"]');
+            if (!link) return;
+            const target = document.getElementById(link.getAttribute('href').slice(1));
+            if (!target) return;
+            e.preventDefault();
+            if (!menu.hidden) setMenu(false);
+            target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+            if (link.dataset.service) Contact.pick(link.dataset.service);
+          });
+
+          if (!('IntersectionObserver' in window)) {
+            $$('.sec__head').forEach(head => head.classList.add('is-seen'));
+            return;
+          }
+          // Mark the current section in the bar.
+          const spy = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              links.forEach(a => a.setAttribute('aria-current', String(a.getAttribute('href') === `#${entry.target.id}`)));
+            });
+          }, { rootMargin: '-45% 0px -50% 0px' });
+          $$('main > section').forEach(section => spy.observe(section));
+
+          // Section titles breathe out the first time they are seen.
+          const seen = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-seen');
+              seen.unobserve(entry.target);
+            });
+          }, { rootMargin: '0px 0px -12% 0px', threshold: 0.2 });
+          $$('.sec__head').forEach(head => seen.observe(head));
+
+          // The oldest entry of the path closes the trail.
+          const end = $('#trailEnd');
+          if (end) {
+            const io = new IntersectionObserver(entries => {
+              if (entries.some(entry => entry.isIntersecting)) { Log.award('trail'); io.disconnect(); }
+            }, { threshold: 1 });
+            io.observe(end);
+          }
+        }
+        return { init };
+      })();
+
+      /* ------------------------------------------------------------------
+         Work: project index with a detail pane (desktop) or accordion (small
+         screens). Each project gets its own generated contour plate, and the
+         plates morph into each other.
+      ------------------------------------------------------------------ */
+      const Work = (() => {
+        const COLS = 84, ROWS = 48;
+        const LEVELS = [];
+        for (let v = -1.1; v <= 3.2; v += 0.17) LEVELS.push(v);
+
+        const wide = matchMedia('(min-width: 960px)');
+        const opened = new Set();
+        let items = [], btns = [], bodies = [], fields = [];
+        let paneBody, plate, cvs, ctx, pinLabel, sheetNo;
+        let shown = null, from = null, to = null, t0 = 0, raf = 0, active = -1;
+
+        function hash(text) {
+          let h = 2166136261;
+          for (let i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
+          return h >>> 0;
+        }
+        function random(seed) {
+          let a = seed;
+          return () => {
+            a = (a + 0x6D2B79F5) | 0;
+            let t = Math.imul(a ^ (a >>> 15), 1 | a);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+
+        // A small landscape per project: a handful of hills seeded by the project's name.
+        function makeField(seed) {
+          const rand = random(hash(seed));
+          const hills = [];
+          const count = 5 + Math.floor(rand() * 3);
+          // the first hill is the tallest and sits where the pin's label has room
+          hills.push({ x: 0.3 + rand() * 0.4, y: 0.46 + rand() * 0.3, r: 0.2 + rand() * 0.1, a: 1.45 + rand() * 0.3 });
+          for (let i = 1; i < count; i++) {
+            hills.push({
+              x: 0.06 + rand() * 0.88,
+              y: 0.08 + rand() * 0.84,
+              r: 0.12 + rand() * 0.2,
+              a: (rand() < 0.3 ? -0.7 : 1) * (0.35 + rand() * 0.55)
+            });
+          }
+          const f = new Float32Array(COLS * ROWS);
+          let max = -Infinity, peak = 0;
+          for (let j = 0; j < ROWS; j++) {
+            for (let i = 0; i < COLS; i++) {
+              const u = i / (COLS - 1), v = j / (ROWS - 1);
+              let h = 0;
+              for (const hill of hills) {
+                const dx = (u - hill.x) * 1.78, dy = v - hill.y;
+                h += hill.a * Math.exp(-(dx * dx + dy * dy) / (2 * hill.r * hill.r));
+              }
+              f[j * COLS + i] = h;
+              // the pin goes on the highest point that leaves room for its label
+              if (h > max && u > 0.2 && u < 0.8 && v > 0.32 && v < 0.86) { max = h; peak = j * COLS + i; }
+            }
+          }
+          return { f, max, u: (peak % COLS) / (COLS - 1), v: Math.floor(peak / COLS) / (ROWS - 1) };
+        }
+
+        // Marching squares: draw the contour lines of the field that is currently shown.
+        function draw() {
+          if (!shown || !cvs) return;
+          const box = cvs.getBoundingClientRect();
+          if (!box.width || !box.height) return;
+          const ratio = Math.min(devicePixelRatio || 1, 2);
+          const w = Math.round(box.width * ratio), h = Math.round(box.height * ratio);
+          if (cvs.width !== w || cvs.height !== h) { cvs.width = w; cvs.height = h; }
+          ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+          ctx.clearRect(0, 0, box.width, box.height);
+
+          const ink = token('--ink'), accent = token('--accent-text');
+          const cw = box.width / (COLS - 1), ch = box.height / (ROWS - 1);
+          let top = -Infinity;
+          for (let k = 0; k < shown.length; k++) if (shown[k] > top) top = shown[k];
+
+          // graticule
+          ctx.globalAlpha = 0.07; ctx.strokeStyle = ink; ctx.lineWidth = 1;
+          ctx.beginPath();
+          for (let i = 1; i < 8; i++) { const x = Math.round((box.width * i) / 8) + 0.5; ctx.moveTo(x, 0); ctx.lineTo(x, box.height); }
+          for (let j = 1; j < 5; j++) { const y = Math.round((box.height * j) / 5) + 0.5; ctx.moveTo(0, y); ctx.lineTo(box.width, y); }
+          ctx.stroke();
+
+          LEVELS.forEach((level, index) => {
+            const heavy = index % 5 === 0;
+            const high = level > top - 0.4;                 // the last rings below the peak
+            ctx.beginPath();
+            for (let j = 0; j < ROWS - 1; j++) {
+              for (let i = 0; i < COLS - 1; i++) {
+                const a = shown[j * COLS + i], b = shown[j * COLS + i + 1];
+                const c = shown[(j + 1) * COLS + i + 1], d = shown[(j + 1) * COLS + i];
+                const code = (a > level ? 8 : 0) | (b > level ? 4 : 0) | (c > level ? 2 : 0) | (d > level ? 1 : 0);
+                if (code === 0 || code === 15) continue;
+                const x = i * cw, y = j * ch;
+                const T = [x + cw * ((level - a) / (b - a)), y];
+                const R = [x + cw, y + ch * ((level - b) / (c - b))];
+                const B = [x + cw * ((level - d) / (c - d)), y + ch];
+                const L = [x, y + ch * ((level - a) / (d - a))];
+                const seg = (p, q) => { ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); };
+                switch (code) {
+                  case 1: case 14: seg(L, B); break;
+                  case 2: case 13: seg(B, R); break;
+                  case 3: case 12: seg(L, R); break;
+                  case 4: case 11: seg(T, R); break;
+                  case 6: case 9: seg(T, B); break;
+                  case 7: case 8: seg(L, T); break;
+                  case 5: seg(L, T); seg(B, R); break;
+                  case 10: seg(L, B); seg(T, R); break;
+                }
+              }
+            }
+            ctx.strokeStyle = high ? accent : ink;
+            ctx.globalAlpha = high ? 0.95 : heavy ? 0.6 : 0.3;
+            ctx.lineWidth = heavy || high ? 1.3 : 0.8;
+            ctx.stroke();
+          });
+          ctx.globalAlpha = 1;
+        }
+
+        function morph(time) {
+          const t = clamp((time - t0) / 650);
+          const e = 1 - Math.pow(1 - t, 3);
+          for (let k = 0; k < shown.length; k++) shown[k] = from[k] + (to[k] - from[k]) * e;
+          draw();
+          raf = t < 1 ? requestAnimationFrame(morph) : 0;
+        }
+
+        function showField(i, instant) {
+          const field = fields[i];
+          plate.style.setProperty('--px', `${(field.u * 100).toFixed(1)}%`);
+          plate.style.setProperty('--py', `${(field.v * 100).toFixed(1)}%`);
+          if (!shown) { shown = Float32Array.from(field.f); draw(); return; }
+          if (instant || reduce) { shown.set(field.f); draw(); return; }
+          from = Float32Array.from(shown);
+          to = field.f;
+          t0 = performance.now();
+          if (!raf) raf = requestAnimationFrame(morph);
+        }
+
+        function select(i, byVisitor) {
+          if (i === active) return;
+          active = i;
+          items.forEach((item, k) => {
+            item.classList.toggle('is-active', k === i);
+            btns[k].setAttribute('aria-expanded', String(k === i));
+          });
+
+          // fill the pane from the project's own markup
+          const item = items[i];
+          const kind = document.createElement('p');
+          const name = document.createElement('h3');
+          kind.className = 'pane__kind';
+          kind.textContent = $('.proj__kind', item).textContent;
+          name.className = 'pane__name';
+          name.textContent = $('.proj__name', item).textContent;
+          paneBody.textContent = '';
+          paneBody.append(kind, name);
+          Array.from(bodies[i].children).forEach(child => paneBody.append(child.cloneNode(true)));
+          pinLabel.textContent = item.dataset.host || '';
+          sheetNo.textContent = `Sheet ${String(i + 1).padStart(2, '0')} of ${String(items.length).padStart(2, '0')}`;
+          showField(i, !byVisitor);
+
+          if (!byVisitor) return;
+          if (hasGSAP && !reduce && wide.matches) {
+            gsap.fromTo(paneBody.children, { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.05, ease: 'power3.out', overwrite: true });
+          }
+          opened.add(i);
+          if (opened.size >= 3) Log.award('notes');
+        }
+
+        function init() {
+          const list = $('#projList');
+          paneBody = $('#paneBody'); plate = $('#plate'); cvs = $('#plateCanvas');
+          pinLabel = $('#platePin'); sheetNo = $('#plateNo');
+          if (!list || !paneBody || !plate || !cvs) return;
+          ctx = cvs.getContext('2d');
+          items = $$('.proj', list);
+          btns = items.map(item => $('.proj__btn', item));
+          bodies = items.map(item => $('.proj__body', item));
+          fields = items.map(item => makeField($('.proj__name', item).textContent));
+          select(0, false);
+
+          btns.forEach((btn, i) => {
+            btn.addEventListener('click', () => {
+              select(i, true);
+              // on the accordion, keep the opened row in view when the one above collapses
+              if (!wide.matches) requestAnimationFrame(() => {
+                const y = btn.getBoundingClientRect().top;
+                if (y < 64) scrollBy(0, y - 76);
+              });
+            });
+            if (finePointer) {
+              let timer = 0;
+              btn.addEventListener('pointerenter', () => { timer = setTimeout(() => { if (wide.matches) select(i, true); }, 90); });
+              btn.addEventListener('pointerleave', () => clearTimeout(timer));
+            }
+            btn.addEventListener('focus', () => { if (wide.matches && btn.matches(':focus-visible')) select(i, true); });
+          });
+
+          if ('ResizeObserver' in window) new ResizeObserver(draw).observe(cvs);
+          Theme.onChange(draw);
+
+          // the plate tilts toward the cursor
+          if (finePointer && !reduce) {
+            const wrap = plate.parentElement;
+            wrap.addEventListener('pointermove', e => {
+              const box = wrap.getBoundingClientRect();
+              const x = (e.clientX - box.left) / box.width - 0.5;
+              const y = (e.clientY - box.top) / box.height - 0.5;
+              plate.style.setProperty('--ry', `${(x * 10).toFixed(2)}deg`);
+              plate.style.setProperty('--rx', `${(-y * 8).toFixed(2)}deg`);
+            });
+            wrap.addEventListener('pointerleave', () => {
+              plate.style.setProperty('--ry', '0deg');
+              plate.style.setProperty('--rx', '0deg');
+            });
+          }
+        }
+
+        return { init };
+      })();
+
+      /* ------------------------------------------------------------------
+         Path: the trail line is drawn by scroll, waypoints fill as it passes.
+      ------------------------------------------------------------------ */
+      const Path = {
+        init() {
+          if (!hasST || reduce) return;
+          $$('.trail').forEach(trail => {
+            trail.classList.add('trail--live');
+            gsap.fromTo(trail, { '--draw': 0 }, {
+              '--draw': 1, ease: 'none',
+              scrollTrigger: { trigger: trail, start: 'top 78%', end: 'bottom 62%', scrub: 0.6 }
+            });
+            $$('li', trail).forEach(li => ScrollTrigger.create({
+              trigger: li, start: 'top 74%',
+              onEnter: () => li.classList.add('is-on'),
+              onLeaveBack: () => li.classList.remove('is-on')
+            }));
+          });
+        }
+      };
+
+      /* ------------------------------------------------------------------
+         Contact: copy the address, and a message starter that fills WhatsApp
+         or an email draft. Nothing is sent from this page.
+      ------------------------------------------------------------------ */
+      const Contact = (() => {
+        const EMAIL = 'info.mdkamruzzaman.dev@gmail.com';
+        const WHATSAPP = '8801516573530';
+        let form, wa, mail, nameIn, msgIn;
+
+        function build() {
+          const picked = form.querySelector('input[name="service"]:checked');
+          const service = picked ? picked.value : '';
+          const who = nameIn.value.trim();
+          const msg = msgIn.value.trim();
+          const lines = ['Hi Kamruzzaman,'];
+          if (who) lines.push(`I'm ${who}.`);
+          if (service) lines.push(`I'd like to talk about ${service === 'UI/UX design' ? service : service.toLowerCase()}.`);
+          if (msg) lines.push('', msg);
+          const text = lines.join('\n');
+          const subject = service ? `Project enquiry: ${service}` : 'Project enquiry';
+          wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+          mail.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+        }
+
+        function pick(service) {
+          if (!form) return;
+          const input = $$('input[name="service"]', form).find(i => i.value === service);
+          if (input) { input.checked = true; build(); }
+        }
+
+        function init() {
+          form = $('#brief');
+          if (!form) return;
+          wa = $('#briefWa'); mail = $('#briefMail'); nameIn = $('#briefName'); msgIn = $('#briefMsg');
+          form.addEventListener('input', build);
+          form.addEventListener('change', build);
+          form.addEventListener('submit', e => e.preventDefault());
+          build();
+
+          const copy = $('#copyMail');
+          const label = copy.textContent;
+          const reset = () => setTimeout(() => { copy.textContent = label; }, 2400);
+          copy.addEventListener('click', () => {
+            const ok = () => { copy.textContent = 'Copied'; Log.award('signal'); reset(); };
+            const fail = () => {
+              // no clipboard access: select the address so it can be copied by hand
+              const range = document.createRange();
+              range.selectNodeContents($('#mailLink'));
+              const selection = getSelection();
+              selection.removeAllRanges();
+              selection.addRange(range);
+              copy.textContent = 'Selected, now press Ctrl+C';
+              reset();
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(EMAIL).then(ok, fail);
+            else fail();
+          });
+          $$('.reach a, .brief__go a').forEach(a => a.addEventListener('click', () => Log.award('signal')));
+        }
+
+        return { init, pick };
+      })();
+
+      /* Local time in Jashore, next to the coordinates. */
+      function clock() {
+        const el = $('#clock');
+        if (!el) return;
+        let format;
+        try {
+          format = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Asia/Dhaka' });
+        } catch (e) { return; }
+        const tick = () => { el.textContent = `, ${format.format(new Date())}`; };
+        tick();
+        setInterval(tick, 15000);
+      }
+
+      /* The secret log entry: type "xplore", or tap the logo five times. */
+      function secret() {
+        const found = () => { Terrain.burst(); Log.award('xplore'); };
+        let typed = '';
+        addEventListener('keydown', e => {
+          if (e.ctrlKey || e.metaKey || e.altKey || e.key.length !== 1) return;
+          if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+          typed = (typed + e.key.toLowerCase()).slice(-6);
+          if (typed === 'xplore') found();
+        });
+        const brand = $('#brand');
+        if (!brand) return;
+        let taps = 0, timer = 0;
+        brand.addEventListener('click', () => {
+          taps += 1;
+          clearTimeout(timer);
+          timer = setTimeout(() => { taps = 0; }, 1600);
+          if (taps >= 5) { taps = 0; found(); }
+        });
+      }
+
+      /* ------------------------------------------------------------------
+         Start. Each part is isolated so one failure cannot blank the page.
+      ------------------------------------------------------------------ */
+      [Log.init, Theme.init, Nav.init, Name.init, Work.init, Path.init, Contact.init, clock, secret, intro].forEach(start => {
+        try { start(); } catch (err) { console.error(err); root.classList.remove('is-loading'); }
+      });
+
+      const hint = $('#heroHint');
+      if (hint && !finePointer) hint.textContent = 'Tap the ground for a ripple.';
+      const year = $('#year');
+      if (year) year.textContent = String(new Date().getFullYear());
+      if (hasST) addEventListener('load', () => ScrollTrigger.refresh());
+    })();
+  </script>
+</body>
+
+</html>
