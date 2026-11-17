@@ -4,14 +4,97 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Title and description are also set from assets/data/content.json (meta); these copies are for search engines and link previews. -->
-  <title>Md Kamruzzaman, Developer in Dhaka</title>
+
+  <!-- ===================================================================
+       SEO. Search engines and link previews read these tags directly, so
+       they live here (not in content.json). If the site moves to another
+       domain, replace https://xplorekamrul.vercel.app/ everywhere in
+       this block, in robots.txt and in sitemap.xml.
+       =================================================================== -->
+  <title>Md Kamruzzaman – Full-Stack Developer in Dhaka, Bangladesh</title>
   <meta name="description"
-    content="Md Kamruzzaman is a full-stack developer in Dhaka. Next.js, TypeScript, PostgreSQL. Seven platforms in production. Now at AdZoic.">
-  <meta property="og:title" content="Md Kamruzzaman, Developer in Dhaka">
-  <meta property="og:description" content="Full-stack developer. Seven platforms in production. Now at AdZoic.">
-  <link rel="icon"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2306070B'/%3E%3Ccircle cx='20' cy='22' r='5' fill='%23FFC766'/%3E%3Ccircle cx='44' cy='20' r='4' fill='%2366E0FF'/%3E%3Ccircle cx='32' cy='36' r='6' fill='%23B48CFF'/%3E%3Ccircle cx='18' cy='46' r='3.5' fill='%2366FFB0'/%3E%3Ccircle cx='47' cy='45' r='4.5' fill='%23FF7A8C'/%3E%3C/svg%3E">
+    content="Md Kamruzzaman is a full-stack developer in Dhaka, Bangladesh, building web apps with Next.js, TypeScript and PostgreSQL. Seven platforms in production.">
+  <meta name="author" content="Md Kamruzzaman">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://xplorekamrul.vercel.app/">
+
+  <!-- Link previews: Facebook, LinkedIn, WhatsApp, Slack... -->
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Md Kamruzzaman">
+  <meta property="og:url" content="https://xplorekamrul.vercel.app/">
+  <meta property="og:title" content="Md Kamruzzaman – Full-Stack Developer in Dhaka">
+  <meta property="og:description"
+    content="Full-stack developer building web apps with Next.js, TypeScript and PostgreSQL. Seven platforms in production. Now at AdZoic.">
+  <meta property="og:image" content="https://xplorekamrul.vercel.app/assets/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Md Kamruzzaman's portfolio: his portrait and name drawn in particles">
+  <meta property="og:locale" content="en_US">
+  <meta property="profile:first_name" content="Md">
+  <meta property="profile:last_name" content="Kamruzzaman">
+
+  <!-- X / Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Md Kamruzzaman – Full-Stack Developer in Dhaka">
+  <meta name="twitter:description"
+    content="Full-stack developer building web apps with Next.js, TypeScript and PostgreSQL. Seven platforms in production.">
+  <meta name="twitter:image" content="https://xplorekamrul.vercel.app/assets/images/og-image.jpg">
+  <meta name="twitter:image:alt" content="Md Kamruzzaman's portfolio: his portrait and name drawn in particles">
+
+  <!-- Icons, browser colour, install info -->
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#06070B" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#F6F5F1" media="(prefers-color-scheme: light)">
+
+  <!-- Structured data: tells Google who this page is about (a Person) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://xplorekamrul.vercel.app/#website",
+        "url": "https://xplorekamrul.vercel.app/",
+        "name": "Md Kamruzzaman",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://xplorekamrul.vercel.app/#page",
+        "url": "https://xplorekamrul.vercel.app/",
+        "name": "Md Kamruzzaman – Full-Stack Developer in Dhaka, Bangladesh",
+        "isPartOf": { "@id": "https://xplorekamrul.vercel.app/#website" },
+        "mainEntity": { "@id": "https://xplorekamrul.vercel.app/#person" },
+        "primaryImageOfPage": "https://xplorekamrul.vercel.app/assets/images/og-image.jpg"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://xplorekamrul.vercel.app/#person",
+        "name": "Md Kamruzzaman",
+        "url": "https://xplorekamrul.vercel.app/",
+        "image": "https://xplorekamrul.vercel.app/assets/images/og-image.jpg",
+        "jobTitle": "Full-Stack Developer",
+        "description": "Full-stack developer in Dhaka, Bangladesh, building web apps with Next.js, TypeScript and PostgreSQL.",
+        "email": "mailto:mdkamruzzaman099826@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "AdZoic" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressRegion": "Uttara", "addressCountry": "BD" },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "Jashore Polytechnic Institute" },
+          { "@type": "CollegeOrUniversity", "name": "The Institution of Engineers, Bangladesh" }
+        ],
+        "award": "Ranked topper in the CSE department, Jashore Polytechnic Institute, 2024",
+        "knowsAbout": ["Next.js", "React", "TypeScript", "JavaScript", "Node.js", "PostgreSQL", "Prisma", "MongoDB", "Tailwind CSS", "Full-stack web development"],
+        "knowsLanguage": ["Bengali", "English", "Hindi", "Urdu"],
+        "sameAs": [
+          "https://www.linkedin.com/in/xplorekamrul/",
+          "https://github.com/xplorekamrul"
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Everything is local: fonts, styles, scripts. Nothing is loaded from another server. -->
   <link rel="preload" href="assets/data/content.json" as="fetch" crossorigin>
@@ -65,7 +148,8 @@
     <div class="jobcard__in" id="jobCardIn"></div>
   </aside>
   <div class="peek" id="peek" aria-hidden="true">
-    <div class="peek__card" id="peekCard"><span class="peek__ini" id="peekIni"></span><span class="peek__url" id="peekUrl"></span></div>
+    <div class="peek__card" id="peekCard"><span class="peek__ini" id="peekIni"></span><span class="peek__url"
+        id="peekUrl"></span></div>
   </div>
 
   <header class="top" id="top">
@@ -116,12 +200,16 @@
   </aside>
 
   <section class="term" id="term" role="dialog" aria-label="Terminal" hidden>
-    <div class="term__bar"><span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="term__title">visitor@kamruzzaman: ~ <em>kzsh</em></span><span class="term__clock" id="termClock" aria-hidden="true"></span><button type="button" id="termClose">Close</button></div>
+    <div class="term__bar"><span class="term__dots" aria-hidden="true"><i></i><i></i><i></i></span><span
+        class="term__title">visitor@kamruzzaman: ~ <em>kzsh</em></span><span class="term__clock" id="termClock"
+        aria-hidden="true"></span><button type="button" id="termClose">Close</button></div>
     <div class="term__out" id="termOut" aria-live="polite"></div>
     <div class="term__tips" id="termTips" aria-label="Suggestions"></div>
-    <div class="term__in"><label for="termIn"><span class="t-ok">visitor</span><span class="t-dim">@</span><span class="t-key">kamruzzaman</span><span class="t-dim">:</span><span class="t-purple">~</span><span class="t-dim">$</span></label><input id="termIn" type="text" enterkeyhint="go"
-        autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
-        aria-label="Command, press Enter to run"><button type="button" id="termRun">Run</button></div>
+    <div class="term__in"><label for="termIn"><span class="t-ok">visitor</span><span class="t-dim">@</span><span
+          class="t-key">kamruzzaman</span><span class="t-dim">:</span><span class="t-purple">~</span><span
+          class="t-dim">$</span></label><input id="termIn" type="text" enterkeyhint="go" autocomplete="off"
+        autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Command, press Enter to run"><button
+        type="button" id="termRun">Run</button></div>
   </section>
 
   <aside class="keys" id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden>

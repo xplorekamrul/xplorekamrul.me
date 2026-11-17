@@ -53,6 +53,23 @@ Other files you might replace:
 - The resume PDF: `assets/files/` (then update `resume.file`)
 - The portrait: `assets/data/portrait.js` (points + photo, generated data)
 
+## SEO
+
+Search engines and link previews read the `<head>` of `index.html` directly,
+so the SEO tags live there, not in content.json:
+
+- title, description, canonical URL, robots
+- Open Graph and Twitter card tags, with `assets/images/og-image.jpg` (1200×630)
+- JSON-LD structured data (WebSite, ProfilePage, Person)
+- icons and `site.webmanifest`
+
+Root files: `robots.txt` and `sitemap.xml`.
+
+The site address is `https://xplorekamrul.vercel.app/`. If it changes,
+replace it in the `<head>` of `index.html`, in `robots.txt` and in `sitemap.xml`.
+When the content changes, update `<lastmod>` in `sitemap.xml`. If the job
+or the summary changes, update the description tags and the JSON-LD `Person` too.
+
 ## Folder structure
 
 ```

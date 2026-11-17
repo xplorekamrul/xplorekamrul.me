@@ -1,0 +1,14 @@
+{
+  "name": "Md Kamruzzaman – Full-Stack Developer",
+  "short_name": "Kamruzzaman",
+  "description": "Portfolio of Md Kamruzzaman, full-stack developer in Dhaka, Bangladesh.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06070B",
+  "theme_color": "#06070B",
+  "icons": [
+    { "src": "assets/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/images/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
