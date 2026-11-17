@@ -41,6 +41,7 @@ export const Field = (() => {
   attribute vec3 aCustom;
   attribute vec4 aSeed;
   uniform float uTime, uMix, uIntro, uBoom, uPx, uSize, uTintAmt, uPrism, uGain;
+  uniform float uMouseR;   /* size of the circle the pointer pushes open: 1 on a wide screen, smaller on phones */
   uniform vec2 uScale, uRot, uTilt, uAlpha;
   uniform vec3 uOffA, uOffB, uMouse, uShock, uC1A, uC2A, uC1B, uC2B, uTint;
   uniform float uCustom;
@@ -93,9 +94,9 @@ export const Field = (() => {
 
     /* cursor force field */
     vec2 dm = w.xy - uMouse.xy;
-    float f = uMouse.z * exp(-dot(dm, dm) / 0.16);
-    w.xy += normalize(dm + 0.0001) * f * 0.45;
-    w.z += f * 0.6;
+    float f = uMouse.z * exp(-dot(dm, dm) / (0.16 * uMouseR * uMouseR));
+    w.xy += normalize(dm + 0.0001) * f * 0.45 * uMouseR;
+    w.z += f * 0.6 * uMouseR;
 
     /* click shockwave: a ring that travels outwards */
     float age = uTime - uShock.z;
@@ -143,7 +144,7 @@ export const Field = (() => {
     camera.position.z = CAM_Z;
 
     const U = {
-      uTime: { value: 0 }, uMix: { value: 0 }, uIntro: { value: reduce ? 1 : 0 }, uBoom: { value: 0 },
+      uTime: { value: 0 }, uMix: { value: 0 }, uIntro: { value: reduce ? 1 : 0 }, uBoom: { value: 0 }, uMouseR: { value: 1 },
       uPx: { value: 1 }, uSize: { value: 2.3 }, uTintAmt: { value: 0 }, uPrism: { value: 0 }, uGain: { value: 0.6 },
       uScale: { value: new THREE.Vector2(1, 1) }, uRot: { value: new THREE.Vector2() }, uTilt: { value: new THREE.Vector2() }, uAlpha: { value: new THREE.Vector2(1, 1) },
       uOffA: { value: new THREE.Vector3() }, uOffB: { value: new THREE.Vector3() },
@@ -328,7 +329,7 @@ export const Field = (() => {
 
     /* ---- the portrait: its own cloud, drawn behind the name, only in the hero ---- */
     const PU = {
-      uTime: U.uTime, uIntro: U.uIntro, uPx: U.uPx, uMouse: U.uMouse, uBoom: U.uBoom,      /* shared with the main cloud */
+      uTime: U.uTime, uIntro: U.uIntro, uPx: U.uPx, uMouse: U.uMouse, uMouseR: U.uMouseR, uBoom: U.uBoom,      /* shared with the main cloud */
       uSize: { value: 2.4 }, uFade: { value: 1 }, uLight: { value: 0 }, uGain: { value: 0.8 },
       uBox: { value: new THREE.Vector3(0, 0, 1) }, uTurn: { value: new THREE.Vector2() },
       uColA: { value: new THREE.Color() }, uColB: { value: new THREE.Color() },
@@ -338,7 +339,7 @@ export const Field = (() => {
     /* Paint: a small mask over the portrait. One pass of the pointer reveals the photo's real
        colours; they hold for PAINT_HOLD seconds, then that patch vaporises: its points lift off
        as particles, lose the colour, and settle back home as the glow. */
-    const PAINT = 64, PAINT_RADIUS = 11, PAINT_HOLD = 5, PAINT_VAPOUR = 1.2;
+    const PAINT = 64, PAINT_RADIUS = finePointer ? 11 : 6, PAINT_HOLD = 5, PAINT_VAPOUR = 1.2;
     const paintMask = new Float32Array(PAINT * PAINT), paintAge = new Float32Array(PAINT * PAINT), paintVap = new Float32Array(PAINT * PAINT);
     const paintPx = new Uint8Array(PAINT * PAINT * 4);
     const paintTex = new THREE.DataTexture(paintPx, PAINT, PAINT, THREE.RGBAFormat);
@@ -408,7 +409,7 @@ export const Field = (() => {
         vertexShader: `
       attribute float aLum;
       attribute vec4 aSeed;
-      uniform float uTime, uIntro, uPx, uBoom, uSize, uFade, uLight, uGain;
+      uniform float uTime, uIntro, uPx, uBoom, uSize, uFade, uLight, uGain, uMouseR;
       uniform vec3 uBox, uMouse, uColA, uColB;
       uniform vec2 uTurn;
       uniform sampler2D uPhoto, uPaint;
@@ -455,9 +456,9 @@ export const Field = (() => {
         w += dir * gone * gone * (0.6 + aSeed.x * 1.8);
 
         vec2 dm = w.xy - uMouse.xy;
-        float f = uMouse.z * exp(-dot(dm, dm) / 0.07);     /* a small stir under the cursor, not a hole in the face */
-        w.xy += normalize(dm + 0.0001) * f * 0.1;
-        w.z += f * 0.25;
+        float f = uMouse.z * exp(-dot(dm, dm) / (0.07 * uMouseR * uMouseR));     /* a small stir under the cursor, not a hole in the face */
+        w.xy += normalize(dm + 0.0001) * f * 0.1 * uMouseR;
+        w.z += f * 0.25 * uMouseR;
 
         /* vaporising: the patch's points lift off as particles, curl, and settle back home */
         vec3 rise = vec3((aSeed.x - 0.5) * 0.9, 0.55 + aSeed.y * 0.9, (aSeed.z - 0.5) * 0.6);
@@ -760,6 +761,7 @@ export const Field = (() => {
       visH = 2 * Math.tan((FOV * Math.PI) / 360) * CAM_Z;
       visW = visH * camera.aspect;
       U.uPx.value = ratio;
+      U.uMouseR.value = clamp(visW / 8, 0.3, 1) * (finePointer ? 1 : 0.75);
       U.uSize.value = W < 760 ? 2.6 : 3.1;
       PU.uSize.value = W < 760 ? 2.4 : 3.0;
       const nowWide = W / H >= 1.05;

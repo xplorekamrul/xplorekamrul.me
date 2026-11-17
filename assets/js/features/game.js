@@ -1,5 +1,6 @@
 import { $, $$, finePointer } from '../core/env.js';
-import { toast } from '../core/toast.js';
+import { toast, cheer } from '../core/toast.js';
+import { burst, fireworks } from '../core/celebrate.js';
 import { Field } from './field.js';
 
 /* ------------------------------------------------------------------
@@ -76,7 +77,8 @@ export const Game = (() => {
     Field.prism(shipped && prismOn);
   }
 
-  function award(id, label) {
+  /* Gives the XP once. Shows a plain toast unless quiet; returns { xp, levelUp } or false. */
+  function award(id, label, quiet = false) {
     if (!el.btn || done.has(id)) return false;
     const before = levelOf(total());
     done.add(id);
@@ -85,23 +87,56 @@ export const Game = (() => {
     const xp = /^bug\d/.test(id) ? BUG_XP : SINGLE[id];
     const after = levelOf(total());
     const quest = QUESTS.find(q => q.id === id);
+    const levelUp = after > before ? LEVELS[after][1] : null;
     let text = `+${xp} XP  ${label || (quest ? quest.name : id)}`;
-    if (after > before) {
-      text += `  |  Level up: ${LEVELS[after][1]}`;
+    if (levelUp) {
+      text += `  |  Level up: ${levelUp}`;
       el.btn.classList.remove('is-up'); void el.btn.offsetWidth; el.btn.classList.add('is-up');
-      if (after === LEVELS.length - 1) setTimeout(() => { toast('Lead level. You have seen nearly everything here, so let\'s talk.', 4600); Field.boom(); }, 1900);
+      if (after === LEVELS.length - 1) setTimeout(() => { toast('Lead level. You have seen nearly everything here, so let\'s talk.', 4600); Field.boom(); }, quiet ? 4600 : 1900);
     }
-    toast(text, 3600);
-    return true;
+    if (!quiet) toast(text, 3600);
+    return { xp, levelUp };
   }
+
+  /* What the congrats card says, by how many bugs are left */
+  const CHEERS = ['Squashed!', 'Nice catch!', 'Clean hit!', 'Bug down!', 'Sharp eyes!', 'Debugger mode: on'];
+  const nudge = left => (left === 1 ? 'Just one left. It is hiding somewhere, find it!'
+    : left <= 3 ? `Only ${left} left. You are close, keep hunting!`
+      : `${left} more are crawling around. Keep hunting!`);
 
   function squash(btn) {
     const n = Number(btn.dataset.bug);
     if (done.has(`bug${n}`)) return;
     btn.classList.add('is-fixed');
     setTimeout(() => btn.classList.add('is-gone'), 700);
-    award(`bug${n}`, `${FIXES[n]} (${count('bug') + 1} of ${BUGS})`);
-    if (count('bug') === BUGS) setTimeout(() => { award('ship', 'All tests passing. Shipped to production.'); Field.boom(); }, 1500);
+
+    /* a confetti blast right where the bug was */
+    const r = btn.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2, 1);
+
+    const got = award(`bug${n}`, FIXES[n], true);
+    const fixed = count('bug'), left = BUGS - fixed;
+    if (left > 0) {
+      cheer({
+        title: CHEERS[(fixed - 1) % CHEERS.length], xp: got && got.xp,
+        text: nudge(left), extra: got && got.levelUp ? `Level up: you are now ${got.levelUp}` : FIXES[n],
+        done: fixed, total: BUGS
+      });
+      return;
+    }
+    /* the last one: the build ships, with fireworks */
+    cheer({ title: 'All 7 bugs squashed!', xp: got && got.xp, text: 'Every test passing. You are a real debugger.', extra: FIXES[n], done: fixed, total: BUGS });
+    setTimeout(() => {
+      const shipped = award('ship', 'All tests passing. Shipped to production.', true);
+      fireworks();
+      Field.boom();
+      cheer({
+        title: 'Shipped to production!', xp: shipped && shipped.xp, big: true, ms: 6000,
+        text: 'All tests passing. Prismatic particles unlocked in your progress panel.',
+        extra: shipped && shipped.levelUp ? `Level up: you are now ${shipped.levelUp}` : null,
+        done: BUGS, total: BUGS
+      });
+    }, 1500);
   }
 
   function init() {

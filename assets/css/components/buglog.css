@@ -215,3 +215,165 @@
   visibility: visible;
   transition: transform .6s var(--expo), visibility 0s;
 }
+
+/* ---------- The congrats toast (a squashed bug) ---------- */
+.toast.toast--cheer {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  padding: .85rem 1.2rem .85rem .85rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  border-radius: 18px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 60%),
+    var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  box-shadow: 0 18px 50px -18px color-mix(in srgb, var(--accent) 70%, transparent), 0 10px 30px -12px rgba(0, 0, 0, .5);
+}
+
+.toast.toast--cheer.is-on {
+  animation: cheer-pop .7s var(--expo) both;
+}
+
+@keyframes cheer-pop {
+  0% { transform: translate(-50%, 120%) scale(.85); }
+  60% { transform: translate(-50%, -8%) scale(1.04); }
+  100% { transform: translate(-50%, 0) scale(1); }
+}
+
+.cheer__badge {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--surface);
+}
+
+/* the bug, struck through: it is fixed */
+.cheer__badge::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--surface);
+  transform: rotate(-40deg) scaleX(0);
+  animation: cheer-strike .35s .3s ease-out forwards;
+}
+
+@keyframes cheer-strike {
+  to { transform: rotate(-40deg) scaleX(1); }
+}
+
+.cheer__badge svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  animation: cheer-wiggle .6s .1s ease-in-out;
+}
+
+@keyframes cheer-wiggle {
+  25% { transform: rotate(-18deg) scale(1.15); }
+  50% { transform: rotate(14deg); }
+  75% { transform: rotate(-8deg); }
+}
+
+.cheer__body {
+  display: grid;
+  gap: .2rem;
+  min-width: 0;
+}
+
+.cheer__title {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.cheer__xp {
+  padding: .1rem .5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--accent);
+  font-family: var(--font-code);
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.cheer__text {
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}
+
+.cheer__extra {
+  font-family: var(--font-code);
+  font-size: .72rem;
+  color: var(--muted);
+}
+
+/* one dot per bug, the squashed ones lit */
+.cheer__dots {
+  display: flex;
+  gap: .35rem;
+  margin-top: .3rem;
+}
+
+.cheer__dots i {
+  width: .55rem;
+  height: .55rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.cheer__dots i.is-on {
+  background: var(--accent);
+}
+
+.cheer__dots i.is-new {
+  animation: cheer-dot .6s .35s var(--expo) both;
+}
+
+@keyframes cheer-dot {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.8); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 35%, transparent); }
+  100% { transform: scale(1); }
+}
+
+/* the finale is a bit bigger */
+.toast.toast--big {
+  padding: 1.1rem 1.5rem 1.1rem 1.1rem;
+}
+
+.toast--big .cheer__title {
+  font-size: 1.35rem;
+}
+
+.toast--big .cheer__badge {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast.toast--cheer.is-on,
+  .cheer__badge svg,
+  .cheer__dots i.is-new { animation: none; }
+  .cheer__badge::after { animation: none; transform: rotate(-40deg); }
+}
+
+/* The confetti canvas (core/celebrate.js): over the page, never takes clicks */
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 94;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
