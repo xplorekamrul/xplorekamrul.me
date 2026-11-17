@@ -1,0 +1,38 @@
+/* Services */
+
+/* Services */
+.svcs {
+  margin-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+.svc {
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.svc h3 {
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  letter-spacing: -.04em;
+  line-height: 1.05;
+  transition: color .3s, transform .5s var(--expo);
+}
+
+.svc:hover h3 {
+  color: var(--accent);
+  transform: translateX(.6rem);
+}
+
+.svc>p {
+  margin-top: .4rem;
+  max-width: 52ch;
+  color: var(--muted);
+}
+
+.svc .svc__proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  font-size: var(--fs-sm);
+  color: var(--ink);
+}

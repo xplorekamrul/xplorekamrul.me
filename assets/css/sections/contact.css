@@ -1,0 +1,98 @@
+/* Contact */
+
+/* Contact: the cloud says HELLO in the top half */
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: max(100svh, 46rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.has-3d .contact {
+  padding-top: 52vh;
+  padding-top: 52svh;
+}
+
+.contact h2 {
+  font-size: clamp(2rem, 5.2vw, 4.8rem);
+  letter-spacing: -.05em;
+  max-width: 16ch;
+}
+
+.mail {
+  display: inline-block;
+  margin-top: 1.4rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 3.1vw, 2.6rem);
+  letter-spacing: -.04em;
+  line-height: 1.1;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-bottom: 2px solid var(--accent);
+  transition: border-color .6s, color .3s;
+}
+
+.mail:hover {
+  color: var(--accent);
+}
+
+.contact__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.6rem;
+}
+
+.resume__note {
+  padding: .12rem .45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 22%, transparent);
+  font-size: .68rem;
+  font-weight: 700;
+}
+
+.reach {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.reach dt {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.reach dd {
+  margin-top: .3rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .reach {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .4rem 2rem;
+  padding: 1.2rem var(--gut) 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  background: var(--bg);
+}
+
+.foot .bug {
+  left: 46%;
+  top: -1.45rem;
+}

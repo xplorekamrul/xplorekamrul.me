@@ -1,0 +1,45 @@
+/* The theme switch transition */
+
+/* ==========================================================================
+   Theme switch
+   ========================================================================== */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.vt-theme::view-transition-new(root) {
+  animation: theme-reveal .8s var(--expo) both;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0%));
+  }
+
+  to {
+    clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0%));
+  }
+}
+
+.theme-fade,
+.theme-fade *,
+.theme-fade *::before,
+.theme-fade *::after {
+  transition: background-color .45s ease, color .45s ease, border-color .45s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .split .c {
+    transform: none;
+  }
+}

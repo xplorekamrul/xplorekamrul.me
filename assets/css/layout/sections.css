@@ -1,0 +1,100 @@
+/* Shared section layout, split titles and plates */
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+.sec {
+  position: relative;
+  padding: clamp(6rem, 16vh, 11rem) var(--gut) clamp(3rem, 8vh, 6rem);
+  scroll-margin-top: 2rem;
+}
+
+.sec__title {
+  font-size: clamp(3.6rem, 13vw, 13rem);
+  font-weight: 800;
+  letter-spacing: -.06em;
+  line-height: .86;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.sec__title--sm {
+  font-size: clamp(2.8rem, 8.2vw, 8rem);
+}
+
+.lede {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.3rem, 1rem + 1.2vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+}
+
+.sub {
+  margin: 2.2rem 0 .8rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.col {
+  max-width: 46rem;
+}
+
+.col--r {
+  margin-left: auto;
+}
+
+/* Titles split into letters by script and rise when first seen */
+.split .w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: .06em .04em .1em 0;
+  margin: -.06em 0 -.1em;
+  white-space: nowrap;
+}
+
+.split .c {
+  display: inline-block;
+  transform: translateY(112%) rotate(9deg);
+  transform-origin: 0 100%;
+  transition: transform 1s var(--expo);
+  transition-delay: calc(var(--i) * 32ms);
+}
+
+.split.is-in .c {
+  transform: none;
+}
+
+/* Small screens: content sits on a soft plate so it stays readable over the cloud */
+@media (max-width: 1023px) {
+  .has-3d .plate {
+    padding: 1.1rem;
+    margin-inline: -.4rem;
+    border-radius: 18px;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+  }
+
+  .has-3d .hero__meta.plate {
+    padding: .75rem 1.1rem;
+  }
+
+  .has-3d .hero__side.plate {
+    padding: .7rem;
+  }
+}
+
+/* Shown by main.js when content.json cannot be loaded (e.g. index.html opened from disk) */
+.boot-error {
+  max-width: 40rem;
+  margin: 30vh auto;
+  padding: 0 var(--gut);
+  line-height: 1.6;
+}

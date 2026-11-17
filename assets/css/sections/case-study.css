@@ -1,0 +1,134 @@
+/* Case study */
+
+/* Case study */
+.case__meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.case__meta dt {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.case__meta dd {
+  margin-top: .25rem;
+  font-weight: 600;
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 2rem;
+}
+
+.groups h4 {
+  font-weight: 700;
+}
+
+.groups p {
+  margin-top: .15rem;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.arch {
+  border-top: 1px solid var(--line);
+}
+
+.arch__item {
+  padding: .6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.arch dt button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+}
+
+.arch dd {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.js .arch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  border: 0;
+}
+
+.js .arch__item {
+  padding: 0;
+  border: 0;
+}
+
+.js .arch dd {
+  display: none;
+}
+
+.js .arch dt button {
+  min-height: 2.5rem;
+  padding: .4rem .95rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: background-color .25s, color .25s, border-color .25s;
+}
+
+.js .arch__item.is-on dt button {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.arch__note {
+  display: none;
+}
+
+.js .arch__note {
+  display: block;
+  min-height: 4.2em;
+  margin-top: .9rem;
+  padding: .9rem 1rem;
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  transition: border-color .6s, background-color .6s;
+}
+
+.hard {
+  border-top: 1px solid var(--line);
+}
+
+.hard li {
+  position: relative;
+  padding: .6rem 0 .6rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.hard li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.25rem;
+  width: .8rem;
+  height: 2px;
+  background: var(--accent);
+  transition: background-color .6s;
+}
+
+.case__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.8rem;
+}

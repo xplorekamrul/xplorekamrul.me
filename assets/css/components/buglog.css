@@ -1,0 +1,217 @@
+/* Bug tracker / progress panel and the toast */
+
+/* Bug tracker panel + toast */
+.buglog {
+  position: fixed;
+  z-index: 55;
+  top: 4.2rem;
+  right: var(--gut);
+  width: min(25rem, calc(100vw - 2 * var(--gut)));
+  max-height: calc(100vh - 5.4rem);
+  overflow: auto;
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .55);
+}
+
+.buglog[hidden] {
+  display: none;
+}
+
+.buglog__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.buglog h2 {
+  font-size: 1.4rem;
+}
+
+.buglog__sub {
+  margin-top: .35rem;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.buglog__close,
+.buglog__reset {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--fs-sm);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  cursor: pointer;
+}
+
+.xpbar {
+  height: 6px;
+  margin-top: .9rem;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.xpbar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width .8s var(--expo), background-color .6s;
+}
+
+.buglog h3 {
+  margin: 1.3rem 0 .2rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+.quests {
+  border-top: 1px solid var(--line);
+  margin-top: .5rem;
+}
+
+.quests li {
+  display: grid;
+  grid-template-columns: 1.2rem minmax(0, 1fr) auto;
+  gap: 0 .6rem;
+  align-items: baseline;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.quests li::before {
+  content: "";
+  width: .7rem;
+  height: .7rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  transform: translateY(.08rem);
+  transition: background-color .3s, border-color .3s;
+}
+
+.quests li.is-done::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.quests b {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.quests li:not(.is-done) b {
+  color: var(--muted);
+}
+
+.quests span {
+  grid-column: 2;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.quests em {
+  grid-row: 1;
+  grid-column: 3;
+  font-style: normal;
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.quests li.is-done em {
+  color: var(--accent);
+}
+
+.buglog__list {
+  margin-top: .5rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+}
+
+.buglog__list li {
+  display: flex;
+  gap: .6rem;
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.buglog__list li.is-fixed {
+  color: var(--ink);
+}
+
+.buglog__list li::before {
+  content: "open";
+  flex: none;
+  width: 3.2rem;
+  color: var(--muted);
+}
+
+.buglog__list li.is-fixed::before {
+  content: "fixed";
+  color: var(--accent);
+}
+
+.buglog__reward {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: 1rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.buglog__reward[hidden] {
+  display: none;
+}
+
+.buglog__reward input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--accent);
+}
+
+.buglog__reset {
+  display: block;
+  margin-top: .9rem;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.toast {
+  position: fixed;
+  z-index: 95;
+  left: 50%;
+  bottom: 1.2rem;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+  padding: .7rem 1.1rem;
+  border-radius: 12px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  transform: translate(-50%, calc(100% + 2rem));
+  visibility: hidden;
+  transition: transform .6s var(--expo), visibility 0s .6s;
+  pointer-events: none;
+}
+
+.toast.is-on {
+  transform: translate(-50%, 0);
+  visibility: visible;
+  transition: transform .6s var(--expo), visibility 0s;
+}

@@ -1,0 +1,444 @@
+{
+  "meta": {
+    "title": "Md Kamruzzaman, Developer in Dhaka",
+    "description": "Md Kamruzzaman is a full-stack developer in Dhaka. Next.js, TypeScript, PostgreSQL. Seven platforms in production. Now at AdZoic."
+  },
+
+  "profile": {
+    "name": "Md Kamruzzaman",
+    "initials": "MK.",
+    "role": "Full-stack developer",
+    "city": "Dhaka",
+    "country": "Bangladesh",
+    "area": "Uttara, Dhaka",
+    "timeZone": "Asia/Dhaka",
+    "utc": "UTC+6",
+    "email": "mdkamruzzaman099826@gmail.com",
+    "phone": "+880 1516 573 530",
+    "phoneLink": "tel:+8801516573530",
+    "links": {
+      "whatsapp": "https://wa.me/8801516573530",
+      "linkedin": "https://www.linkedin.com/in/xplorekamrul/",
+      "github": "https://github.com/xplorekamrul"
+    },
+    "githubUser": "xplorekamrul"
+  },
+
+  "resume": {
+    "file": "assets/files/Md Kamruzzaman.pdf",
+    "saveAs": "Md_Kamruzzaman_Resume.pdf",
+    "button": "Download resume"
+  },
+
+  "loader": {
+    "label": "Portfolio",
+    "lines": ["$ npm run build", "compiling 38,000 particles", "linking the full stack", "done. opening portfolio"]
+  },
+
+  "nav": {
+    "header": [
+      { "id": "about", "label": "About" },
+      { "id": "work", "label": "Work" },
+      { "id": "services", "label": "Services" },
+      { "id": "career", "label": "Career" },
+      { "id": "skills", "label": "Skills" },
+      { "id": "contact", "label": "Contact" }
+    ],
+    "menu": [
+      { "id": "about", "label": "About" },
+      { "id": "work", "label": "Work" },
+      { "id": "case", "label": "Case study" },
+      { "id": "services", "label": "Services" },
+      { "id": "career", "label": "Career" },
+      { "id": "skills", "label": "Skills" },
+      { "id": "github", "label": "Code" },
+      { "id": "contact", "label": "Contact" }
+    ],
+    "dots": [
+      { "id": "home", "label": "Start" },
+      { "id": "about", "label": "About" },
+      { "id": "work", "label": "Work" },
+      { "id": "case", "label": "Case study" },
+      { "id": "services", "label": "Services" },
+      { "id": "career", "label": "Career" },
+      { "id": "skills", "label": "Skills" },
+      { "id": "github", "label": "Code" },
+      { "id": "contact", "label": "Contact" }
+    ]
+  },
+
+  "hero": {
+    "tagline": { "title": "Full-stack developer", "text": "Next.js, TypeScript, PostgreSQL" },
+    "place": "Dhaka, Bangladesh",
+    "lead": "I build the whole product, from the database to the last pixel.",
+    "leadNote": "Seven platforms in production. Now building at AdZoic.",
+    "buttons": [
+      { "label": "See the work", "href": "#work", "solid": true },
+      { "label": "Get in touch", "href": "#contact" }
+    ],
+    "hint": "Move through the particles. Click for a shockwave. Type your own name and they spell it.",
+    "hintTouch": "Scroll and the particles rebuild.",
+    "spell": { "label": "Write a word with the particles", "placeholder": "Type your name", "button": "Spell it" }
+  },
+
+  "about": {
+    "title": "About",
+    "text": "I'm a full-stack developer based in Dhaka. I take products from an empty repo to production: the schema, the API, the interface, auth and deployment. So far that means school platforms, HR systems, travel portals and online stores, mostly with Next.js, TypeScript and PostgreSQL.",
+    "stats": [
+      { "value": 2, "since": "2024-06", "suffix": "+", "label": "years shipping full-stack products" },
+      { "value": 7, "countProjects": true, "label": "platforms in production" },
+      { "value": 3.91, "decimals": 2, "label": "diploma CGPA, out of 4.00" },
+      { "text": "#1", "label": "CSE department topper, 2024" }
+    ],
+    "now": {
+      "title": "Now",
+      "updated": "2026-11",
+      "items": [
+        { "label": "Building", "text": "At AdZoic: a newspaper platform, a social media management web app, ad creatives for SSP and DSP, dashboard features and ad engine configuration." },
+        { "label": "On the side", "text": "Still shipping for Arrowhead IT Solutions in my free time." },
+        { "label": "Studying", "text": "B.Sc. in CSE at The Institution of Engineers, Bangladesh." },
+        { "label": "Open to", "text": "Freelance projects and interesting teams." },
+        { "label": "Local time", "text": "Dhaka, UTC+6", "clock": true }
+      ]
+    }
+  },
+
+  "marquee": [
+    ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Node.js", "React"],
+    ["Tailwind", "MongoDB", "Socket.io", "NextAuth", "Zod", "AWS"]
+  ],
+
+  "work": {
+    "title": "Work",
+    "projects": [
+      {
+        "id": "school",
+        "name": "School Management Web App",
+        "kind": "Education platform",
+        "hue": 232,
+        "initials": "SM",
+        "url": "https://birbd.org/",
+        "what": "Everything a physical school runs on: classes, attendance, schedules, exams, a virtual classroom, progress reports and automatic class promotion. Students, parents, teachers and admins get role-based accounts, with built-in messaging and calling, payments, a chatbot and quizzes.",
+        "hard": "Building messaging, the text editor, quizzes and the chatbot in-house, integrating payments, shaping the architecture, and self-hosting the app and database on Coolify. I ran the full cycle.",
+        "stack": ["Next.js", "Socket server", "LiveKit", "Prisma", "PostgreSQL", "TypeScript", "Clerk"]
+      },
+      {
+        "id": "hr",
+        "name": "HR Management System",
+        "kind": "Enterprise HR",
+        "hue": 268,
+        "initials": "HR",
+        "url": "https://hris.museafoods.com/",
+        "what": "Employee management, attendance, leave, show-cause notices, shifts, role-based access with page-level permissions, an analytics dashboard and report generation.",
+        "hard": "Pulling attendance from hardware devices, time zone and shift calculations, page-wise permissions, caching and revalidation, and PDF and Excel reports.",
+        "stack": ["Next.js", "Prisma", "MySQL", "TypeScript", "NextAuth", "Server Actions", "jsPDF"]
+      },
+      {
+        "id": "obokash",
+        "name": "Obokash.com",
+        "kind": "Travel agency",
+        "hue": 300,
+        "initials": "OB",
+        "url": "https://work.obokash.com/",
+        "what": "Manages tours, visas, Hajj packages, flights and hotels, with section-by-section content feeding, form rules, comments, IP blocking and role-based access.",
+        "hard": "Tours and visas across many countries, blog comments with replies, section-based forms, and sending admin and user emails at the same time.",
+        "stack": ["Next.js", "Prisma", "MySQL", "TypeScript", "NextAuth", "Zod"]
+      },
+      {
+        "id": "dynamic-school",
+        "name": "Dynamic School Website",
+        "kind": "Multi-tenant websites",
+        "hue": 335,
+        "initials": "DS",
+        "url": "https://www.daulatpurmuhsingirls.edu.bd/",
+        "what": "One project that runs many school websites. Each institute gets its own admin, content editor and access rules, and new institutes are created from the dashboard.",
+        "hard": "Fetching data by domain, an architecture that serves many institutes at once, institute-level admin, and IP blocking on contact forms.",
+        "stack": ["Next.js", "Prisma", "PostgreSQL", "TypeScript", "NextAuth", "Zod"]
+      },
+      {
+        "id": "courier",
+        "name": "Courier Management System",
+        "kind": "Real-time logistics",
+        "hue": 12,
+        "initials": "CM",
+        "url": "https://courier-pro-self.vercel.app/",
+        "what": "Live tracking and dispatch on Google Maps, ETAs, route optimization, role-based portals with analytics, and invoices exported to PDF and CSV.",
+        "hard": "Real-time update conflicts, keeping notification state in sync, and role-based access across portals.",
+        "stack": ["Next.js", "TypeScript", "WebSocket", "Google Maps", "Zod", "MongoDB"]
+      },
+      {
+        "id": "ighotok",
+        "name": "ighotok.com",
+        "kind": "Matchmaking",
+        "hue": 150,
+        "initials": "iG",
+        "url": "https://www.ighotok.com",
+        "what": "A matrimonial platform with fully customizable search, favourites, proposals sent and received between members, and a match percentage for each profile.",
+        "hard": "Linking two members through the proposal flow, and the matching and suggestion logic. I handled database, frontend, backend, auth and deployment.",
+        "stack": ["Next.js", "TypeScript", "shadcn/ui", "Prisma", "PostgreSQL", "Supabase", "Zustand"]
+      },
+      {
+        "id": "ecommerce",
+        "name": "BIRL E-Commerce",
+        "kind": "Online store",
+        "hue": 196,
+        "initials": "EC",
+        "url": "https://birlecom.vercel.app",
+        "what": "A store with secure auth, product variant matrices with inventory, an analytics dashboard and secure checkout.",
+        "hard": "Keeping variant stock in sync, role-based access, and live orders alongside admin state.",
+        "stack": ["Next.js", "Prisma", "PostgreSQL", "TypeScript", "NextAuth", "Nodemailer"]
+      }
+    ],
+    "more": {
+      "text": "Smaller builds: a quiz system, a video player, a text editor, a YouTube clone and a custom auth app.",
+      "link": "See them on GitHub",
+      "href": "https://github.com/xplorekamrul"
+    }
+  },
+
+  "caseStudy": {
+    "title": "Case study",
+    "project": "school",
+    "lede": "School Management Web App: everything a physical school runs on, moved into one platform.",
+    "facts": [
+      { "label": "My role", "text": "Full-stack, the full development cycle" },
+      { "label": "Live at", "text": "birbd.org", "href": "https://birbd.org/" },
+      { "label": "Hosting", "text": "Self-hosted on Coolify" }
+    ],
+    "groupsTitle": "What is inside",
+    "groups": [
+      { "title": "Teaching", "text": "Classes, subjects, schedules and a virtual classroom." },
+      { "title": "Assessment", "text": "Exams, quizzes, progress reports and automatic class promotion." },
+      { "title": "Communication", "text": "Built-in messaging and calling, a chatbot and a text editor." },
+      { "title": "Operations", "text": "Attendance, payments, and separate accounts for students, parents, teachers and admins." }
+    ],
+    "archTitle": "How it fits together",
+    "arch": [
+      { "name": "Next.js + TypeScript", "text": "The app itself: the pages, the server logic and the REST API, in one codebase." },
+      { "name": "PostgreSQL + Prisma", "text": "The school's data: classes, schedules, exams, attendance and payments." },
+      { "name": "Clerk", "text": "Sign-in, and the four kinds of account: student, parent, teacher and admin." },
+      { "name": "Socket server", "text": "Real-time messaging between accounts." },
+      { "name": "LiveKit", "text": "Live audio and video for the virtual classroom and for calls." },
+      { "name": "Nodemailer", "text": "Email notifications." },
+      { "name": "Coolify", "text": "Self-hosting for both the app and its database." }
+    ],
+    "hardTitle": "The hard parts",
+    "hard": [
+      "Building messaging, the text editor, quiz management and the chatbot in-house.",
+      "Integrating payments.",
+      "Shaping an architecture that holds all of it together.",
+      "Self-hosting the app and the database on Coolify."
+    ],
+    "liveButton": "Open birbd.org",
+    "listButton": "See it in the work list"
+  },
+
+  "services": {
+    "title": "Services",
+    "lede": "What I can build for you, with the project that proves each one.",
+    "items": [
+      { "title": "Web apps and SaaS platforms", "text": "The whole product: database, API, interface, sign-in and deployment.", "proof": ["school", "ighotok"] },
+      { "title": "Dashboards and admin panels", "text": "Roles, page-level permissions, analytics, and reports exported to PDF and Excel.", "proof": ["hr", "courier"] },
+      { "title": "Real-time features", "text": "Messaging, calling, live tracking and notifications that stay in sync.", "proof": ["school", "courier"] },
+      { "title": "Multi-tenant websites", "text": "Many sites from one project, each with its own domain, admin and content.", "proof": ["dynamic-school"] },
+      { "title": "Online stores", "text": "Product variants, inventory, checkout and an analytics dashboard.", "proof": ["ecommerce"] },
+      { "title": "Booking and content sites", "text": "Section-by-section content management, forms, comments and access control.", "proof": ["obokash"] }
+    ],
+    "button": { "label": "Start a project", "href": "#contact" }
+  },
+
+  "career": {
+    "title": "Career",
+    "jobs": [
+      {
+        "company": "AdZoic",
+        "role": "Software Engineer",
+        "when": "Now",
+        "current": true,
+        "pins": "23.774,90.412;-6.2,106.82",
+        "label": "DHAKA",
+        "hue": 190,
+        "what": "An AI-powered ad-buying platform based in Dhaka with an office in Jakarta, running real-time campaigns across apps, mobile web and video.",
+        "details": [
+          { "label": "Location", "text": "Niketon, Gulshan-1, Dhaka" },
+          { "label": "Type", "text": "On-site" },
+          { "label": "Status", "text": "Current role" },
+          { "label": "Working on", "text": "A newspaper platform, a social media management web app, ad creatives for SSP and DSP, dashboard features and ad engine configuration." }
+        ]
+      },
+      {
+        "company": "Arrowhead IT Solutions",
+        "role": "Full-Stack Developer",
+        "when": "Sep 2025 to now",
+        "pins": "22.814,89.538",
+        "label": "KHULNA",
+        "hue": 262,
+        "what": "Built the HR management system, the matrimonial platform, Obokash.com and other platforms with Next.js, TypeScript, PostgreSQL, SQL and Prisma.",
+        "details": [
+          { "label": "Location", "text": "Sonadanga, Khulna" },
+          { "label": "Type", "text": "Remote. Still contributing in my free time." },
+          { "label": "Time there", "text": "Since Sep 2025", "from": "2025-09" },
+          { "label": "Stack", "text": "Next.js, TypeScript, PostgreSQL, SQL, Prisma", "stack": true },
+          { "label": "Built", "built": ["@hr", "@ighotok", "@obokash", "a school management system", { "text": "WatchZoneBD", "href": "https://watchzonebd.com" }] }
+        ]
+      },
+      {
+        "company": "Bulipe Tech Ltd.",
+        "role": "Front-End Developer",
+        "when": "Jun to Sep 2025",
+        "pins": "23.794,90.404",
+        "label": "DHAKA",
+        "hue": 322,
+        "what": "Built SEO-optimized websites with API integration, including the Mackodra and Nickdora platforms, with Next.js.",
+        "details": [
+          { "label": "Location", "text": "Banani, Dhaka" },
+          { "label": "Time there", "text": "4 mo", "from": "2025-06", "to": "2025-09" },
+          { "label": "Stack", "text": "Next.js", "stack": true },
+          { "label": "Built", "built": ["The Mackodra and Nickdora web platforms"] }
+        ]
+      },
+      {
+        "company": "Bay Institute of Renaissance Ltd.",
+        "role": "Full-Stack Developer",
+        "when": "Jun 2024 to Aug 2025",
+        "pins": "23.874,90.39",
+        "label": "DHAKA",
+        "hue": 150,
+        "what": "Built e-commerce, school management and social media SaaS platforms with Next.js, TypeScript, PostgreSQL, MongoDB and Prisma.",
+        "details": [
+          { "label": "Location", "text": "Uttara, Dhaka" },
+          { "label": "Time there", "text": "1 yr 3 mo", "from": "2024-06", "to": "2025-08" },
+          { "label": "Stack", "text": "Next.js, TypeScript, PostgreSQL, MongoDB, Prisma", "stack": true },
+          { "label": "Built", "built": ["@school", "@ecommerce", "a social media SaaS platform"] }
+        ]
+      }
+    ],
+    "education": {
+      "title": "Education",
+      "items": [
+        { "degree": "B.Sc. in CSE", "place": "The Institution of Engineers, Bangladesh, Dhaka. 2025 to 2029", "word": "2029", "status": "Ongoing", "from": 2025, "to": 2029 },
+        { "degree": "Diploma in CSE", "place": "Jashore Polytechnic Institute. 2020 to 2024", "word": "3.91", "grade": "3.91", "outOf": "4.00" },
+        { "degree": "SSC, Science", "place": "Gazir Dargah Madrasah, Jashore. 2018 to 2020", "word": "4.78", "grade": "4.78", "outOf": "5.00" }
+      ]
+    },
+    "award": { "title": "Ranked topper in the CSE department", "text": "Jashore Polytechnic Institute, 2024" }
+  },
+
+  "skills": {
+    "title": "Skills",
+    "groups": [
+      { "name": "Languages", "items": ["JavaScript", "TypeScript", "HTML", "CSS", "SQL", "C"] },
+      { "name": "Frontend", "items": ["React", "Next.js", "Vite", "TanStack", "Redux", "Tailwind CSS", "Bootstrap", "Framer Motion"] },
+      { "name": "Backend", "items": ["Node.js", "Express", "Prisma ORM", "Zod", "JWT", "Clerk", "NextAuth"] },
+      { "name": "Databases", "items": ["PostgreSQL", "MongoDB Atlas", "MySQL", "phpMyAdmin"] },
+      { "name": "Deployment", "items": ["AWS EC2", "Vercel", "Coolify", "GitHub Pages"] },
+      { "name": "Tools", "items": ["Git", "GitHub", "Postman", "Chrome DevTools", "VS Code", "Figma", "Photoshop"] }
+    ],
+    "soft": [
+      { "title": "Working style", "text": "Problem-solving, creative thinking, teamwork, leadership, active listening." },
+      { "title": "Languages spoken", "text": "Bengali (native), English (professional), Hindi and Urdu (conversational)." }
+    ]
+  },
+
+  "github": {
+    "title": "Code",
+    "intro": "My public code lives on GitHub."
+  },
+
+  "voices": {
+    "title": "What people say",
+    "items": []
+  },
+
+  "contact": {
+    "title": "Have a product to build? Let's talk.",
+    "copyButton": "Copy email address",
+    "buttons": [
+      { "label": "WhatsApp", "link": "whatsapp" },
+      { "label": "LinkedIn", "link": "linkedin" },
+      { "label": "GitHub", "link": "github" }
+    ],
+    "reach": [
+      { "label": "Phone", "text": "+880 1516 573 530", "href": "tel:+8801516573530" },
+      { "label": "Based in", "text": "Uttara, Dhaka" },
+      { "label": "Working at", "text": "AdZoic" },
+      { "label": "Status", "text": "Open to freelance" }
+    ]
+  },
+
+  "footer": {
+    "shortcutsButton": "Keyboard shortcuts",
+    "backToTop": "Back to the top"
+  },
+
+  "shortcuts": {
+    "title": "Keyboard shortcuts",
+    "items": [
+      { "label": "Next / previous section", "keys": "[→][←]" },
+      { "label": "Jump to a section", "keys": "[1] to [9]" },
+      { "label": "Open the terminal", "keys": "[Ctrl][K] or [`]" },
+      { "label": "Switch the theme", "keys": "[Alt][T]" },
+      { "label": "Download the resume", "keys": "[Alt][R]" },
+      { "label": "Your progress", "keys": "[Alt][P]" },
+      { "label": "Move through the projects", "keys": "[↑][↓] then [Enter]" },
+      { "label": "Write with the particles", "keys": "just type" },
+      { "label": "Close anything", "keys": "[Esc]" },
+      { "label": "This list", "keys": "[?]" }
+    ]
+  },
+
+  "terminal": {
+    "whoami": [
+      "Md Kamruzzaman. Full-stack developer in Dhaka.",
+      "I build whole products with Next.js, TypeScript and PostgreSQL, from the schema to the interface.",
+      "Now building at AdZoic."
+    ],
+    "hire": "Yes. Open to freelance work and interesting teams.",
+    "rate": "That depends on the project. Send the scope to",
+    "greet": ["Hi. I am the command line of this portfolio.", "Ask about the work, the skills or the experience, or type help."],
+    "bye": "Any time. Type contact to get in touch, or exit to close.",
+    "joke": "There are 10 kinds of people: those who read binary, and those still looking for the 7 bugs on this page.",
+    "can": ["I answer questions about Md Kamruzzaman: projects, skills, experience, education and contact.", "I also run commands. Type help for the list."],
+    "spoken": "Bengali (native), English (professional), Hindi and Urdu (conversational).",
+    "soft": "Problem-solving, creative thinking, teamwork, leadership and active listening.",
+    "awardNote": "Diploma CGPA: 3.91 out of 4.00.",
+    "location": "Uttara, Dhaka, Bangladesh",
+    "stack": "Next.js · TypeScript · PostgreSQL · Prisma",
+    "suggestions": ["help", "neofetch", "resume", "cat resume", "projects", "which projects use PostgreSQL?", "are you available?", "ls"],
+    "cv": [
+      "[[b:Md Kamruzzaman]]  [[m:·]]  Full-stack developer  [[m:·]]  Uttara, Dhaka 1230",
+      "",
+      "ACADEMIC BACKGROUND",
+      "  BSc in CSE        [[m:The Institution of Engineers, Bangladesh]]   [[p:2025 – 2029]]",
+      "  Diploma in CSE    [[m:Jashore Polytechnic Institute]]  CGPA [[n:3.91]]/4.00   [[p:2020 – 2024]]",
+      "  SSC (Science)     [[m:Gazir Dargah Madrasah]]  GPA [[n:4.78]]/5.00   [[p:2018 – 2020]]",
+      "",
+      "ACHIEVEMENT",
+      "  [[w:★]] Ranked topper, CSE department, Jashore Polytechnic Institute ([[n:2024]])",
+      "",
+      "KEY EXPERTISE",
+      "  Languages    JavaScript, TypeScript, HTML, CSS, SQL, C",
+      "  Frontend     React.js, Next.js, Vite.js, TanStack, Redux, Tailwind CSS, Bootstrap, Framer Motion",
+      "  Backend      Node.js, Express.js, Prisma ORM, Zod, JWT, Clerk, NextAuth",
+      "  Databases    PostgreSQL, MongoDB Atlas, phpMyAdmin",
+      "  Deployment   AWS EC2, Vercel, Coolify, GitHub Pages",
+      "  Tools        Git, GitHub, Postman, Chrome DevTools, VS Code, Figma, Photoshop",
+      "",
+      "CAREER HIGHLIGHTS",
+      "  [[p:Sep 2025 – now     ]]  [[b:Software Developer (Full-stack)]], Arrowhead IT Solutions",
+      "  [[p:Jun 2025 – Sep 2025]]  [[b:Front-end Developer]], Bulipe Tech Ltd.",
+      "  [[p:Jun 2024 – Aug 2025]]  [[b:Full-stack Developer]], Bay Institute of Renaissance Ltd.",
+      "",
+      "KEY PROJECTS",
+      "  School Management     birbd.org",
+      "  HR Management         hris.museafoods.com",
+      "  Obokash.com travel    work.obokash.com",
+      "  Dynamic school sites  daulatpurmuhsingirls.edu.bd",
+      "  Courier management    courier-pro-self.vercel.app",
+      "  Matrimonial           ighotok.com",
+      "  E-commerce            birlecom.vercel.app",
+      "",
+      "[[m:Type]] [[g:resume]] [[m:to download the PDF, or]] [[g:open resume]] [[m:to view it.]]"
+    ]
+  }
+}

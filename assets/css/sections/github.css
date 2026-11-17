@@ -1,0 +1,226 @@
+/* Code: live from GitHub, contribution calendar */
+
+/* Code, live from GitHub */
+.gh__state {
+  color: var(--muted);
+}
+
+.gh__state a {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.gh__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.gh__stats b {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+  letter-spacing: -.04em;
+  line-height: 1;
+}
+
+.gh__stats span {
+  display: block;
+  margin-top: .4rem;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.gh__langs div {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) 2.6rem;
+  align-items: center;
+  gap: .9rem;
+  padding: .32rem 0;
+  font-size: var(--fs-sm);
+}
+
+.gh__langs i {
+  position: relative;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.gh__langs i::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--v) * 100%);
+  border-radius: inherit;
+  background: var(--accent);
+  transition: background-color .6s;
+}
+
+.gh__langs small {
+  text-align: right;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* the contribution calendar */
+.gh__cal {
+  position: relative;
+}
+
+.gh__scroll {
+  container-type: inline-size;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  padding-bottom: .35rem;
+}
+
+.cal {
+  --c: clamp(10px, calc((100cqw - 2rem - 3px * 53) / 53), 13px);
+  --g: 3px;
+  display: grid;
+  grid-template-columns: 2rem repeat(var(--weeks, 53), var(--c));
+  grid-template-rows: 1.15rem repeat(7, var(--c));
+  gap: var(--g);
+  width: max-content;
+  margin-inline: auto;
+  font-size: .6875rem;
+  line-height: 1;
+  color: var(--muted);
+}
+
+.cal__day {
+  grid-column: 1;
+  align-self: center;
+}
+
+.cal__month {
+  grid-row: 1;
+  white-space: nowrap;
+}
+
+.gh__cal i {
+  display: block;
+  width: var(--c, 11px);
+  height: var(--c, 11px);
+  border-radius: 2px;
+  background: var(--gh0);
+  box-shadow: inset 0 0 0 1px rgb(27 31 35 / .06);
+}
+
+.gh__cal i[data-l="1"] {
+  background: var(--gh1);
+}
+
+.gh__cal i[data-l="2"] {
+  background: var(--gh2);
+}
+
+.gh__cal i[data-l="3"] {
+  background: var(--gh3);
+}
+
+.gh__cal i[data-l="4"] {
+  background: var(--gh4);
+}
+
+.cal i:hover {
+  box-shadow: 0 0 0 1px var(--ink);
+}
+
+.cal:not(.is-in) i {
+  opacity: 0;
+  transform: scale(.2);
+}
+
+.cal.is-in i {
+  transition: opacity .35s var(--ease), transform .55s var(--expo);
+  transition-delay: calc(var(--w) * 13ms);
+}
+
+.cal__foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: .6rem 1.5rem;
+  margin-top: .7rem;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.cal__key {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.cal__key i {
+  --c: 10px;
+}
+
+.cal__key i:first-child {
+  margin-left: .3rem;
+}
+
+.cal__key i:last-child {
+  margin-right: .3rem;
+}
+
+.cal__tip {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, calc(-100% - 8px));
+  padding: .4rem .65rem;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.gh__repos {
+  border-top: 1px solid var(--line);
+}
+
+.gh__repos li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .2rem 1rem;
+  align-items: baseline;
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.gh__repos a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -.03em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.gh__repos a:hover {
+  color: var(--accent);
+}
+
+.gh__repos small {
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.gh__repos p {
+  grid-column: 1 / -1;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}

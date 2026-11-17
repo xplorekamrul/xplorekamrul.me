@@ -1,0 +1,344 @@
+/* Header, menu button and header buttons */
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.top {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: .8rem var(--gut);
+  transition: background-color .3s;
+}
+
+.top.is-stuck {
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  justify-self: start;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -.03em;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1rem, 2.2vw, 2.1rem);
+}
+
+.nav a {
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  color: var(--muted);
+  transition: color .25s;
+}
+
+.nav a:hover,
+.nav a[aria-current="true"] {
+  color: var(--ink);
+}
+
+.tools {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.pill,
+.iconbtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  height: 2.3rem;
+  min-width: 2.3rem;
+  padding: 0 .6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .25s;
+}
+
+.js .pill,
+.js .iconbtn {
+  display: inline-flex;
+}
+
+.iconbtn {
+  padding: 0;
+}
+
+.pill:hover,
+.iconbtn:hover {
+  border-color: var(--ink);
+}
+
+.pill svg {
+  width: .85rem;
+  height: .85rem;
+  color: var(--accent);
+  transition: color .6s;
+}
+
+.pill__lv {
+  display: grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 .25rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: .68rem;
+}
+
+.pill__sep {
+  width: 1px;
+  height: .85rem;
+  background: var(--line);
+}
+
+.pill.is-up {
+  animation: levelup 1s var(--expo);
+}
+
+@keyframes levelup {
+  30% {
+    transform: scale(1.1);
+    border-color: var(--accent);
+  }
+}
+
+.iconbtn span {
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+}
+
+.pill b {
+  font-variant-numeric: tabular-nums;
+}
+
+.iconbtn svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform .6s var(--ease);
+}
+
+.iconbtn[data-mode="dark"] svg {
+  transform: rotate(180deg);
+}
+
+/* Menu button: two bars. Opening, they meet and then cross; closing, they uncross and then part. */
+.js .burger {
+  display: none;
+  position: relative;
+}
+
+.burger i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1rem;
+  height: 2px;
+  margin: -1px 0 0 -.5rem;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+@supports (translate: 0) {
+  .burger i {
+    transition: rotate .3s cubic-bezier(.6, 0, .3, 1), translate .26s cubic-bezier(.6, 0, .3, 1) .24s;
+  }
+
+  .burger i:first-child {
+    translate: 0 -3.5px;
+  }
+
+  .burger i:last-child {
+    translate: 0 3.5px;
+  }
+
+  .burger[aria-expanded="true"] i {
+    translate: 0 0;
+    transition: translate .24s cubic-bezier(.6, 0, .3, 1), rotate .42s cubic-bezier(.3, 1.4, .5, 1) .2s;
+  }
+
+  .burger[aria-expanded="true"] i:first-child {
+    rotate: 45deg;
+  }
+
+  .burger[aria-expanded="true"] i:last-child {
+    rotate: -45deg;
+  }
+}
+
+@supports not (translate: 0) {
+  .burger i {
+    transition: transform .5s var(--expo);
+  }
+
+  .burger i:first-child {
+    transform: translateY(-3.5px);
+  }
+
+  .burger i:last-child {
+    transform: translateY(3.5px);
+  }
+
+  .burger[aria-expanded="true"] i:first-child {
+    transform: rotate(45deg);
+  }
+
+  .burger[aria-expanded="true"] i:last-child {
+    transform: rotate(-45deg);
+  }
+}
+
+/* Header buttons: two crests of light run around each border, like a wave */
+@property --wave {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.tools .pill,
+.tools .iconbtn {
+  position: relative;
+  border-color: transparent;
+}
+
+.tools .pill::before,
+.tools .iconbtn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(from var(--wave), var(--line) 0 6%, var(--accent) 19%, var(--line) 33% 56%, color-mix(in srgb, var(--accent) 60%, var(--line)) 69%, var(--line) 83% 100%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: wave 4.2s linear infinite;
+}
+
+.tools> :nth-child(2)::before {
+  animation-delay: -1s;
+}
+
+.tools> :nth-child(3)::before {
+  animation-delay: -2.1s;
+}
+
+.tools> :nth-child(4)::before {
+  animation-delay: -3.2s;
+}
+
+.tools .pill:hover::before,
+.tools .iconbtn:hover::before {
+  filter: brightness(1.25) saturate(1.5);
+}
+
+@keyframes wave {
+  to {
+    --wave: 360deg;
+  }
+}
+
+.brand__short {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .top {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .nav,
+  .pill__name {
+    display: none;
+  }
+
+  .tools {
+    gap: .35rem;
+  }
+
+  .brand {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .js .burger {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 430px) {
+  .brand__full {
+    display: none;
+  }
+
+  .brand__short {
+    display: inline;
+  }
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 6rem var(--gut) 2rem;
+  background: var(--bg);
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menu {
+  overflow-y: auto;
+}
+
+.menu a,
+.menu button {
+  display: block;
+  width: 100%;
+  padding: .2rem 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  text-align: left;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 9vw, 3.4rem);
+  letter-spacing: -.04em;
+  line-height: 1.12;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-open {
+  overflow: hidden;
+}

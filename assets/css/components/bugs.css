@@ -1,0 +1,67 @@
+/* The bugs of the bug-hunt game */
+
+/* Bugs: small beetles that crawl around. Click to squash. */
+.bug {
+  display: none;
+}
+
+.js .bug {
+  position: absolute;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.bug svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  animation: crawl 7s linear infinite;
+  transition: transform .25s, opacity .4s .15s;
+}
+
+.bug:hover svg {
+  animation-play-state: paused;
+}
+
+@keyframes crawl {
+  0% {
+    transform: translateX(-1.4rem) rotate(90deg);
+  }
+
+  46% {
+    transform: translateX(1.4rem) rotate(90deg);
+  }
+
+  50% {
+    transform: translateX(1.4rem) rotate(270deg);
+  }
+
+  96% {
+    transform: translateX(-1.4rem) rotate(270deg);
+  }
+
+  100% {
+    transform: translateX(-1.4rem) rotate(450deg);
+  }
+}
+
+.bug.is-fixed {
+  pointer-events: none;
+}
+
+.bug.is-fixed svg {
+  animation: none;
+  transform: scale(1.7, .15);
+  opacity: 0;
+}
+
+.bug.is-gone {
+  display: none;
+}

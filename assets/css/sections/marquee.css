@@ -1,0 +1,57 @@
+/* The scrolling stack names */
+
+/* Marquee */
+.marquee {
+  position: relative;
+  z-index: 1;
+  padding: clamp(1rem, 4vw, 3rem) 0;
+  overflow: hidden;
+}
+
+.marquee__row {
+  display: flex;
+  width: max-content;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 8.5rem);
+  line-height: 1.02;
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.marquee__row span {
+  padding-right: .32em;
+}
+
+.marquee__row span::after {
+  content: "";
+  display: inline-block;
+  width: .16em;
+  height: .16em;
+  margin-left: .32em;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: background-color .6s;
+}
+
+.marquee__row--out {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+}
+
+.no-gsap .marquee__row {
+  animation: slide 38s linear infinite;
+}
+
+.no-gsap .marquee__row--out {
+  animation-direction: reverse;
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
+  }
+}

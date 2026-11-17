@@ -1,0 +1,92 @@
+/* Keyboard shortcuts panel */
+
+/* Keyboard shortcuts */
+.keys {
+  position: fixed;
+  z-index: 85;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(27rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  padding: 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .6);
+}
+
+.keys[hidden] {
+  display: none;
+}
+
+.keys__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.keys h2 {
+  font-size: 1.4rem;
+}
+
+.keys__head button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: var(--fs-sm);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  cursor: pointer;
+}
+
+.keys dl {
+  margin-top: .9rem;
+  border-top: 1px solid var(--line);
+}
+
+.keys dl div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fs-sm);
+}
+
+.keys dt {
+  color: var(--muted);
+}
+
+.keys dd {
+  display: flex;
+  gap: .25rem;
+  white-space: nowrap;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.6rem;
+  padding: .12rem .4rem;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: var(--bg);
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  text-align: center;
+}
+
+.foot button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  cursor: pointer;
+}

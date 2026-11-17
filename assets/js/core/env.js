@@ -1,0 +1,12 @@
+export const root = document.documentElement;
+export const $ = (s, c = document) => c.querySelector(s);
+export const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+export const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
+export const lerp = (a, b, t) => a + (b - a) * t;
+export const token = n => getComputedStyle(root).getPropertyValue(n).trim();
+export const hasGSAP = typeof window.gsap !== 'undefined';
+export const hasST = hasGSAP && typeof window.ScrollTrigger !== 'undefined';
+export const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+export const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+if (hasST) gsap.registerPlugin(ScrollTrigger);
+if (!hasGSAP) root.classList.add('no-gsap');

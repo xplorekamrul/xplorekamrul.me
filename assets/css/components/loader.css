@@ -1,0 +1,72 @@
+/* The loading screen */
+
+/* ==========================================================================
+   Loader
+   ========================================================================== */
+.loader {
+  display: none;
+}
+
+.js .loader {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem var(--gut) 1.25rem;
+  background: var(--bg);
+  transition: transform 1.1s var(--expo), visibility 0s 1.1s;
+}
+
+.is-ready .loader {
+  transform: translateY(-101%);
+  visibility: hidden;
+}
+
+.loader__who {
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}
+
+.loader__who b {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.loader__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.loader__log {
+  font-family: var(--font-code);
+  font-size: var(--fs-xs);
+  color: var(--muted);
+  min-height: 3.2em;
+}
+
+.loader__n {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(6rem, 24vw, 20rem);
+  line-height: .8;
+  letter-spacing: -.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.loader__bar {
+  height: 2px;
+  margin-top: 1rem;
+  background: var(--line);
+}
+
+.loader__bar i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--ink);
+}

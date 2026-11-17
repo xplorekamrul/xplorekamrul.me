@@ -1,0 +1,64 @@
+/* About and the Now box */
+
+/* About */
+.about {
+  min-height: 100vh;
+}
+
+/* Now */
+.nowbox {
+  max-width: 58rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  padding: 1.2rem 1.3rem .9rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+}
+
+.nowbox h3 {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: 1.4rem;
+  letter-spacing: -.03em;
+}
+
+.nowbox h3::before {
+  content: "";
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: ping 2.4s infinite;
+}
+
+.facts {
+  margin-top: .8rem;
+  border-top: 1px solid var(--line);
+}
+
+.facts div {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: .55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  color: var(--muted);
+  font-size: var(--fs-sm);
+}
+
+.nowbox__stamp {
+  margin-top: .7rem;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+@media (max-width: 620px) {
+  .facts div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .1rem;
+  }
+}
