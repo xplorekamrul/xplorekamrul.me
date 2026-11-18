@@ -334,7 +334,7 @@ export const Field = (() => {
     const PU = {
       uTime: U.uTime, uIntro: U.uIntro, uPx: U.uPx, uMouse: U.uMouse, uMouseR: U.uMouseR, uBoom: U.uBoom,      /* shared with the main cloud */
       uSize: { value: 2.4 }, uFade: { value: 1 }, uLight: { value: 0 }, uGain: { value: 0.8 },
-      uBox: { value: new THREE.Vector3(0, 0, 1) }, uTurn: { value: new THREE.Vector2() },
+      uBox: { value: new THREE.Vector3(0, 0, 1) }, uTurn: { value: new THREE.Vector2() }, uBoxPx: { value: 300 },
       uColA: { value: new THREE.Color() }, uColB: { value: new THREE.Color() },
       uPhoto: { value: null }, uPaint: { value: null }, uHasPhoto: { value: 0 }
     };
@@ -342,7 +342,7 @@ export const Field = (() => {
     /* Paint: a small mask over the portrait. One pass of the pointer reveals the photo's real
        colours; they hold for PAINT_HOLD seconds, then that patch vaporises: its points lift off
        as particles, lose the colour, and settle back home as the glow. */
-    const PAINT = 64, PAINT_RADIUS = finePointer ? 11 : 6, PAINT_HOLD = 5, PAINT_VAPOUR = 1.2;
+    const PAINT = 64, PAINT_RADIUS = finePointer ? 11 : 6, PAINT_HOLD = 5, PAINT_VAPOUR = 1.8;
     const paintMask = new Float32Array(PAINT * PAINT), paintAge = new Float32Array(PAINT * PAINT), paintVap = new Float32Array(PAINT * PAINT);
     const paintPx = new Uint8Array(PAINT * PAINT * 4);
     const paintTex = new THREE.DataTexture(paintPx, PAINT, PAINT, THREE.RGBAFormat);
@@ -382,13 +382,13 @@ export const Field = (() => {
           }
         }
         const vp = paintVap[i];
-        paintPx[i * 4] = (paintMask[i] * (1 - vp) * 255) | 0;                /* R: how much colour shows */
-        paintPx[i * 4 + 1] = (Math.sin(vp * Math.PI) * 255) | 0;             /* G: how far its points have lifted off */
+        paintPx[i * 4] = (paintMask[i] * 255) | 0;                           /* R: how much of the photo is painted in */
+        paintPx[i * 4 + 1] = (vp * 255) | 0;                                 /* G: how far it has dissolved, 0..1 */
       }
       paintTex.needsUpdate = true;
       paintLive = any;
     }
-    let portrait = null, pmat = null;
+    let portrait = null, pmat = null, portraitPaint = null;
     if (PORTRAIT) try {
       const raw = atob(PORTRAIT), all = raw.length / 4, PN = Math.min(all, innerWidth < 760 ? 11000 : all);
       const pos = new Float32Array(PN * 3), lum = new Float32Array(PN), rnd = new Float32Array(PN * 4);
@@ -416,6 +416,9 @@ export const Field = (() => {
       uniform vec3 uBox, uMouse, uColA, uColB;
       uniform vec2 uTurn;
       uniform sampler2D uPhoto, uPaint;
+      uniform float uBoxPx;
+      varying vec2 vUv;
+      varying float vSpan;
       uniform float uHasPhoto;
       varying vec3 vColor;
       varying float vAlpha;
@@ -426,7 +429,9 @@ export const Field = (() => {
         vec2 uv = position.xy * 0.5 + 0.5;
         vec4 paintTx = texture2D(uPaint, uv);
         float paint = uHasPhoto * paintTx.r;
-        float vapour = uHasPhoto * paintTx.g;          /* 0..1..0 while a patch vaporises */
+        float vapour = uHasPhoto * paintTx.g;          /* 0..1 while a patch dissolves */
+        float turn = aSeed.w * 0.7;                     /* each particle changes back at its own moment */
+        paint *= 1.0 - smoothstep(turn, turn + 0.3, vapour);
         vec3 photo = uHasPhoto > 0.5 ? texture2D(uPhoto, uv).rgb : vec3(0.0);
 
         /* a full bust, turned a little by the pointer */
@@ -463,10 +468,6 @@ export const Field = (() => {
         w.xy += normalize(dm + 0.0001) * f * 0.1 * uMouseR;
         w.z += f * 0.25 * uMouseR;
 
-        /* vaporising: the patch's points lift off as particles, curl, and settle back home */
-        vec3 rise = vec3((aSeed.x - 0.5) * 0.9, 0.55 + aSeed.y * 0.9, (aSeed.z - 0.5) * 0.6);
-        rise.x += 0.25 * sin(uTime * 3.0 + aSeed.w * 30.0) * vapour;
-        w += rise * vapour * (0.35 + aSeed.w * 0.45) * uBox.z * 0.5;
         w += dir * uBoom * (1.2 + aSeed.x * 3.2);
 
         vec4 mv = modelViewMatrix * vec4(w, 1.0);
@@ -491,11 +492,49 @@ export const Field = (() => {
         vColor = mix(mix(uColA, uColB, aLum), real, paint);
         vAlpha = tone * low * back * ash * uFade * ie * uGain * (0.8 + 0.2 * sin(uTime * 2.0 + aSeed.w * 60.0));
         vAlpha *= mix(1.0, 0.6, paint * (1.0 - uLight));     /* overlapping light would wash the colours out to white */
-        vAlpha *= 1.0 - 0.55 * vapour;
-        gl_PointSize *= 1.0 - 0.35 * vapour;
+
+      #ifdef PAINT_PASS
+        /* the painted layer: the photo's true colours, as solid dots big enough to touch,
+           and only the points facing the viewer (the back of the head would bring the
+           face's colours through from behind) */
+        float front = smoothstep(-0.15, 0.15, p.z);
+        vColor = photo;
+        vAlpha = min(1.0, paint * 1.5) * front * low * (1.0 - melt) * uFade * ie;
+        gl_PointSize = uSize * uPx * (6.0 / max(0.5, -mv.z)) * 2.2;
+        /* the dot covers a small square of the photo: hand its centre and size to the fragment shader */
+        vUv = uv;
+        vSpan = gl_PointSize / max(1.0, uBoxPx * 2.0);
+      #else
+        /* the glow layer steps aside wherever the photo is painted in */
+        vAlpha *= 1.0 - paint;
+      #endif
       }
     `
       });
+
+      /* Second pass for the painted photo. Normal blending in both themes, so the colours
+         look the same on dark and light (the glow pass adds light, which would wash them out). */
+      const pmatPaint = new THREE.ShaderMaterial({
+        uniforms: PU, vertexShader: pmat.vertexShader, defines: { PAINT_PASS: 1 },
+        transparent: true, depthTest: false, depthWrite: false, blending: THREE.NormalBlending,
+        fragmentShader: `
+          uniform sampler2D uPhoto;
+          varying float vAlpha;
+          varying vec2 vUv;
+          varying float vSpan;
+          void main() {
+            vec2 c = gl_PointCoord - 0.5;
+            /* every pixel of the dot reads its own spot of the photo, so the dots
+               join up into the real picture instead of flat coloured discs */
+            vec3 col = texture2D(uPhoto, vUv + vec2(c.x, -c.y) * vSpan).rgb;
+            gl_FragColor = vec4(col, smoothstep(0.5, 0.38, length(c)) * vAlpha);
+          }`
+      });
+      portraitPaint = new THREE.Points(pgeo, pmatPaint);
+      portraitPaint.frustumCulled = false;
+      portraitPaint.renderOrder = -0.9;          /* over the glow, still behind the name */
+      portraitPaint.visible = false;
+      scene.add(portraitPaint);
       portrait = new THREE.Points(pgeo, pmat);
       portrait.frustumCulled = false;
       portrait.renderOrder = -1;                 /* behind the name */
@@ -860,9 +899,11 @@ export const Field = (() => {
         const show = (1 - clamp((sm - 0.05) / 0.7)) * (1 - 0.92 * U.uCustom.value);
         PU.uFade.value = show;
         portrait.visible = show > 0.003;
+        if (portraitPaint) portraitPaint.visible = portrait.visible && paintLive;   /* only drawn while something is painted */
         if (portrait.visible && heroMeta && heroFoot) {
           const b = heroBox(), unit = visH / H;
           PU.uBox.value.set(0, (H / 2 - (b.top + b.size / 2)) * unit, (b.size / 2) * unit);
+          PU.uBoxPx.value = (b.size / 2) * U.uPx.value;
           PU.uTurn.value.set(pointer.sx * 0.4 + Math.sin(t * 0.45) * 0.1, -pointer.sy * 0.22);
 
           /* the brush: where the pointer crosses the portrait, paint the photo's colours in */
