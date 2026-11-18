@@ -15,6 +15,9 @@ export const Field = (() => {
   /* the loader may finish before three.js arrives: remember, and start once booted */
   let wantStart = false;
   api.start = () => { wantStart = true; };
+  /* whenReady(fn): run fn now if the particles are up, or as soon as they boot */
+  const readyFns = [];
+  api.whenReady = fn => { if (api.ready) fn(); else readyFns.push(fn); };
   api.boot = () => {
   if (api.ready) return api;
   const canvas = $('#gl');
@@ -935,6 +938,7 @@ export const Field = (() => {
     return fail();
   }
   if (wantStart) api.start();
+  if (api.ready) readyFns.splice(0).forEach(fn => { try { fn(); } catch (e) { console.error(e); } });
   return api;
   };
   return api;

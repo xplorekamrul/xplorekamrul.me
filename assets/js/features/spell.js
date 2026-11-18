@@ -1,4 +1,4 @@
-import { $, finePointer } from '../core/env.js';
+import { $, finePointer, root } from '../core/env.js';
 import { Field } from './field.js';
 import { Game } from './game.js';
 import { Terminal } from './terminal.js';
@@ -19,6 +19,7 @@ export const Spell = (() => {
     Field.clear('spell');
   }
   function commit() {
+    if (!Field.ready) { Field.whenReady(commit); return; }   /* three.js still loading: spell it once it is up */
     const text = buf.trim();
     if (!text) { Field.clear('spell'); return; }
     if (text === 'BOOM') { Field.clear('spell'); Field.boom(); Game.award('secret', 'Secret found: boom'); }
@@ -28,7 +29,7 @@ export const Spell = (() => {
     holdT = setTimeout(reset, 8000);
   }
   function set(text, fromInput) {
-    if (!Field.ready) return false;
+    if (root.classList.contains('no-3d')) return false;     /* no WebGL on this device */
     buf = String(text).toUpperCase().replace(/[^A-Z0-9 .!?&'+#@/<>-]/g, '').slice(0, 14);
     if (input && !fromInput) input.value = buf;
     if (chip) { chip.hidden = !buf || !finePointer; chipText.textContent = buf; }
@@ -40,8 +41,7 @@ export const Spell = (() => {
   function init() {
     chip = $('#typed'); chipText = $('#typedText'); input = $('#spellIn');
     const form = $('#spell');
-    if (!Field.ready) return;
-    if (form) {
+    if (form && input) {
       input.addEventListener('input', () => set(input.value, true));
       input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); set(input.value, true); input.blur(); } });
       $('#spellGo').addEventListener('click', () => set(input.value, true));
